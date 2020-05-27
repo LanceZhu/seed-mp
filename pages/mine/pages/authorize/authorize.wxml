@@ -1,0 +1,10 @@
+<view class="device">
+    <header></header>
+    <image src='/images/SEED3.png' class='seed'></image>
+    <form bindsubmit="bindSave">
+    <view class='code'>
+      <textarea bindinput="getInputValue" class="content" data-type="content" placeholder="口令" value="{{content}}"></textarea>
+    </view>
+    <button bindtap="submit" class="save-btn">添加口令</button>
+    </form>
+</view>

@@ -1,0 +1,7 @@
+<view wx:if="{{permission}}">
+  <programs-portal programs="{{ programs }}"></programs-portal>
+</view>
+<view wx:if="{{!permission}}">
+  <header></header>
+  <view class='content'>未授权用户，功能不开放</view>
+</view>

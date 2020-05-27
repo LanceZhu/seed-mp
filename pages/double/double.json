@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "双人PK",
+  "usingComponents": {
+    "programs-portal": "/components/programs-portal/programs-portal"
+  }
+}

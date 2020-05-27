@@ -1,0 +1,33 @@
+.poster{
+  width: 750rpx;
+}
+
+.box{
+    background: #FFFFFF;
+    width: 670rpx;
+    height: 160rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0rpx 40rpx;
+    margin: 80rpx 0;
+}
+
+.box image{
+  width:160rpx;
+  height:160rpx;
+}
+
+.desc{
+  margin-left: 50rpx;
+  width: 460rpx;
+}
+
+.title{
+}
+
+.subtitle{
+  font-size:16px;
+  color:#888888;
+}

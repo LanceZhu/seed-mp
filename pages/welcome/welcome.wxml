@@ -1,0 +1,16 @@
+<image src="/images/welcome.png" class='poster' style='height: {{winHeight*ratio - 350}}rpx'></image>
+<view class='box'>
+    <view>
+      <image src='/images/SEED3.png'></image>
+    </view>
+    <view class='desc'>
+      <view class='title'>碎片时间学编程</view>
+      <view class='subtitle'>
+        <text>
+          利用碎片时间学习Arduino
+          编程及项目设计技巧
+          全面助力参赛
+        </text>
+      </view>
+    </view>
+</view>

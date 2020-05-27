@@ -1,0 +1,18 @@
+Page({
+    data: {
+        programs: [
+            { 'title': '基础语法学习', 'subtitle': '电子语法手册\n知识点清晰可查\n碎片时间学习编程', 'img': '/images/grammer.svg', 'location': './basicArduino/basic' },
+            { 'title': '实验训练', 'subtitle': '逐句代码详解\n手把手硬件搭建\n关键函数完全解读', 'img': '/images/hardware.svg', 'location': './spark/spark' },
+            { 'title': '产品设计', 'subtitle': '以用户为中心\n创意创新方法论\nidea从产生到实现', 'img': '/images/p_design.png', 'location': './productDesign/design' }
+        ]
+    },
+
+    onLoad: function (options) {
+    },
+
+    onShow (e) {
+    },
+
+    quit: function () {
+    }
+})

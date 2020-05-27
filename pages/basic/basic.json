@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "programs-portal": "/components/programs-portal/programs-portal"
+  }
+}

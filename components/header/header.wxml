@@ -1,0 +1,3 @@
+<view>
+    <image src='/images/header.png' class='header'></image>
+  </view>
