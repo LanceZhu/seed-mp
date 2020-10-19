@@ -15,19 +15,25 @@
         -->
       </view>
     </view>
-    <view class='notification'>
-      <view class='title'>
-        <image src='cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/notification.svg' style='width: 40rpx; height: 40rpx'></image>
-        <view class='desc'>功能</view>
-        <!-- <image src='cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/more.png' style='width: 30rpx; height: 30rpx'></image> -->
-      </view>
-
-      <view class='programs'>
-        <view wx:for="{{ extentions }}" wx:key="extention" class='program' bindtap='jumpToDetail' data-location="{{item.location}}">
-          <image src='{{item.img}}' class='image'></image>
-          <view>{{item.desc}}</view>
-        </view>
-      </view>
-    </view>
+     <van-cell-group title="功能">
+      <van-cell
+        is-link
+        wx:for="{{apps}}"
+        wx:key="index"
+        title="{{item.desc}}"
+        icon="{{item.icon}}"
+        link-type="navigateTo"
+        url="{{item.url}}"/>
+     </van-cell-group>
+     <van-cell-group title="其他">
+      <van-cell
+        is-link
+        wx:for="{{utils}}"
+        wx:key="index"
+        title="{{item.desc}}"
+        icon="{{item.icon}}"
+        link-type="navigateTo"
+        url="{{item.url}}"/>
+     </van-cell-group>
   </view>
 </view>

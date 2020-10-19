@@ -1,6 +1,9 @@
 {
   "navigationBarTitleText": "个人中心",
     "usingComponents": {
-      "header": "/components/header/header"
+      "header": "/components/header/header",
+      "van-cell": "@vant/weapp/cell/index",
+      "van-cell-group": "@vant/weapp/cell-group/index",
+      "van-icon": "@vant/weapp/icon/index"
     }
 }

@@ -1,0 +1,9 @@
+node_modules
+
+# 外部库
+miniprogram_npm
+template
+towxml
+utils/lodash.foreach
+vendor
+pages/mine/pages/ec-canvas

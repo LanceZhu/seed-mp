@@ -51,6 +51,10 @@
         "game": {
             "list": []
         },
+        "gamePlugin": {
+            "current": -1,
+            "list": []
+        },
         "miniprogram": {
             "current": 4,
             "list": [
@@ -81,7 +85,14 @@
                 {
                     "id": -1,
                     "name": "授权页",
-                    "pathName": "pages/authorize/authorize"
+                    "pathName": "pages/authorize/authorize",
+                    "query": ""
+                },
+                {
+                    "id": -1,
+                    "name": "pages/mine/pages/mine",
+                    "pathName": "pages/mine/pages/mine",
+                    "scene": null
                 }
             ]
         }

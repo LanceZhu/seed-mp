@@ -3,14 +3,35 @@ let app = getApp()
 Page({
     data: {
         userInfo: {},
-        extentions: [
-            { 'img': 'cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/progress.svg', 'desc': '学习报告', 'location': './schedule/schedule' },
-            { 'img': 'cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/book.svg', 'desc': '历史错题', 'location': './mistake/mistake' },
-            { 'img': 'cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/calendar.svg', 'desc': '签到查询', 'location': './calendar/calendar' },
-            { 'img': 'cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/news.svg', 'desc': '消息通知', 'location': 'news/news' },
-            { 'img': 'cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/upload.svg', 'desc': '反馈', 'location': './feedback/feedback' }
+        apps: [
+            {
+                desc: '学习报告',
+                icon: 'apps-o',
+                url: './schedule/schedule'
+            },
+            {
+                'desc': '历史错题',
+                icon: 'todo-list-o',
+                'url': './mistake/mistake' },
+            {
+                desc: '签到查询',
+                icon: 'flag-o',
+                url: './calendar/calendar'
+            },
             // { 'img': '/images/PK.svg', 'desc': '双人PK', 'location': '/pages/double/double' },
             // { 'img': 'cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/user_au.svg', 'desc': '用户认证', 'location': './authorize/authorize' }
+        ],
+        utils: [
+            {
+                desc: '消息通知',
+                icon: 'volume-o',
+                url: 'news/news'
+            },
+            {
+                desc: '反馈',
+                icon: 'smile-comment-o',
+                url: './feedback/feedback'
+            }
         ]
     },
 
