@@ -39,7 +39,7 @@
   border-style: solid;
   border-color: transparent #fff #fff #fff;
   border-radius: 50%;
-  -webkit-animation: ".t1" 2s infinite linear; /***一秒循环执行**/
+  animation: t1 2s infinite linear; /***一秒循环执行**/
   z-index: 100;
 }
 
@@ -48,7 +48,7 @@
   height: 200rpx;
   left: 94rpx;
   top: 100rpx;
-  -webkit-animation: ".t2" 2.5s infinite linear;
+  animation: t2 2.5s infinite linear;
 }
 
 .t3 {
@@ -56,43 +56,40 @@
   height: 240rpx;
   left: 74rpx;
   top: 80rpx;
-  -webkit-animation: ".t3" 3.5s infinite linear;
+  animation: t3 3.5s infinite linear;
 }
 
 
-@-webkit-keyframes ".t1" {
+@keyframes t1 {
   /**关键帧名称**/
-
   0% {
-    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
   }
 
   100% {
-    -webkit-transform: rotate(-180deg);
+    transform: rotate(-180deg);
   }
 }
 
-@-webkit-keyframes ".t2" {
+@keyframes t2 {
   /**关键帧名称**/
-
   0% {
-    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
-@-webkit-keyframes ".t3" {
+@keyframes t3 {
   /**关键帧名称**/
-
   0% {
-    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 
   100% {
-    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 }
 
