@@ -1,6 +1,5 @@
 var qcloud = require('../../../../../vendor/wafer2-client-sdk/index.js')
 var util = require('../../../../../utils/util.js')
-var config = require('../../../../../config.js')
 var app = getApp()
 
 Page({
@@ -15,9 +14,9 @@ Page({
   },
 
   onLoad: function (opt) {
-    var that = this;
+    var that = this
     wx.showLoading({
-      title: '加载中...',
+      title: '加载中...'
     })
     qcloud.request({
       login: true,
@@ -28,14 +27,14 @@ Page({
       },
       success: (res) => {
         console.log('[question_by_id]', res.data.data)
-        let question = res.data.data[0]
+        const question = res.data.data[0]
         let right_answer = ''
         if (Object.getOwnPropertyNames(question).length) {
           question.answer = JSON.parse(question.answer)
           var ask = app.towxml.toJson(question.ask, 'markdown', that)
           ask.theme = 'min'
           for (let i = 0; i < question.answer.length; i++) {
-            if (question.answer[i].right == 1) {
+            if (question.answer[i].right === 1) {
               right_answer = question.answer[i].answer
             }
           }
@@ -43,17 +42,17 @@ Page({
             showContent: true,
             ask: ask,
             question: question,
-            right_answer: right_answer,
+            right_answer: right_answer
           })
         }
         wx.hideLoading()
       },
-      fail(error) {
+      fail (error) {
         wx.hideLoading()
-        util.showSuccess('请求失败');
-        console.log('[request fail]', error);
-      },
-    });
+        util.showSuccess('请求失败')
+        console.log('[request fail]', error)
+      }
+    })
   },
   onReady: function () {},
   onShow: function () {},
@@ -63,8 +62,8 @@ Page({
   onReachBottom: function () {},
   onShareAppMessage: function () {
     return {
-      title: "碎片时间学编程",
-      path: "/pages/main/main"
-    };
+      title: '碎片时间学编程',
+      path: '/pages/main/main'
+    }
   }
 })

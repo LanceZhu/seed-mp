@@ -1,20 +1,19 @@
-import initCalendar, { getSelectedDay, setTodoLabels } from '../../../../template/calendar/index';
-let qcloud = require('../../../../vendor/wafer2-client-sdk/index')
-let config = require('../../../../config')
-let util = require('../../../../utils/util.js')
-let app = getApp()
+import initCalendar, { getSelectedDay, setTodoLabels } from '../../../../template/calendar/index'
+const qcloud = require('../../../../vendor/wafer2-client-sdk/index')
+const util = require('../../../../utils/util.js')
+const app = getApp()
 
 Page({
- data: {
-   initCalendarDone: false,
-   signinDone: false,
-   signinDays: [],
-   localclick: false
- },
+  data: {
+    initCalendarDone: false,
+    signinDone: false,
+    signinDays: [],
+    localclick: false
+  },
 
   signin: function () {
     var that = this
-    let date = new Date()
+    const date = new Date()
     if (!that.data.signinDone && !that.data.localclick) {
       that.setData({
         localclick: true
@@ -31,7 +30,7 @@ Page({
           that.setData({
             signinDone: true
           })
-          let data = that.data.signinDays
+          const data = that.data.signinDays
           data.push({
             year: String(date.getFullYear()),
             month: String(date.getMonth() + 1),
@@ -40,7 +39,7 @@ Page({
           setTodoLabels({
             pos: 'bottom',
             dotColor: '#40',
-            days: data,
+            days: data
           })
           that.setData({
             signinDays: data
@@ -54,15 +53,15 @@ Page({
         complete: res => {
         }
       })
-    }else{
+    } else {
       util.showSuccess('已签到~')
     }
   },
 
   onShow: function () {
-    let that = this
+    const that = this
     wx.showLoading({
-      title: '加载中...',
+      title: '加载中...'
     })
     initCalendar({
       multi: false, // 是否开启多选,
@@ -74,11 +73,11 @@ Page({
        * @param { array } allSelectedDays 选择的所有日期（当mulit为true时，才有allSelectedDays参数）
        */
       afterTapDay: (currentSelect, allSelectedDays) => {
-        console.log('===============================');
-        console.log('当前点击的日期', currentSelect);
-        console.log('当前点击的日期是否有事件标记: ', currentSelect.hasTodo || false);
-        allSelectedDays && console.log('选择的所有日期', allSelectedDays);
-        console.log('getSelectedDay方法', getSelectedDay());
+        console.log('===============================')
+        console.log('当前点击的日期', currentSelect)
+        console.log('当前点击的日期是否有事件标记: ', currentSelect.hasTodo || false)
+        allSelectedDays && console.log('选择的所有日期', allSelectedDays)
+        console.log('getSelectedDay方法', getSelectedDay())
       },
       /**
        * 日期点击事件（此事件会完全接管点击事件）
@@ -92,7 +91,7 @@ Page({
       /**
        * 日历初次渲染完成后触发事件，如设置事件标记
        */
-      afterCalendarRender() {
+      afterCalendarRender () {
         const data = []
         qcloud.request({
           login: true,
@@ -102,15 +101,15 @@ Page({
             all: true
           },
           success: res => {
-            let currentDate = new Date()
+            const currentDate = new Date()
             for (let i = 0; i < res.data.data.length; i++) {
-              let date = new Date(res.data.data[i].date)
+              const date = new Date(res.data.data[i].date)
               data.push({
                 year: String(date.getFullYear()),
                 month: String(date.getMonth() + 1),
                 day: String(date.getDate())
               })
-              if (currentDate.getFullYear() == date.getFullYear() && currentDate.getMonth() == date.getMonth() && currentDate.getDate() == date.getDate()) {
+              if (currentDate.getFullYear() === date.getFullYear() && currentDate.getMonth() === date.getMonth() && currentDate.getDate() === date.getDate()) {
                 that.setData({
                   signinDone: true
                 })
@@ -119,8 +118,8 @@ Page({
             setTodoLabels({
               pos: 'bottom',
               dotColor: '#40',
-              days: data,
-            });
+              days: data
+            })
             that.setData({
               signinDays: data
             })
@@ -135,7 +134,7 @@ Page({
             wx.hideLoading()
           }
         })
-      },
-    });
+      }
+    })
   }
-});
+})

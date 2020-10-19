@@ -1,27 +1,26 @@
-let qcloud = require('../../../../vendor/wafer2-client-sdk/index')
-let config = require('../../../../config')
-let util = require('../../../../utils/util.js')
-let app = getApp()
+const qcloud = require('../../../../vendor/wafer2-client-sdk/index')
+const util = require('../../../../utils/util.js')
+const app = getApp()
 
 Page({
   data: {
     options: [{
-      title: "Bug反馈",
+      title: 'Bug反馈',
       code: 103
     }, {
-      title: "功能需求",
+      title: '功能需求',
       code: 200
     }, {
-      title: "吐槽",
+      title: '吐槽',
       code: 300
     }],
     choose: 103,
-    content: ""
+    content: ''
   },
   getOption: function (e) {
     this.setData({
       choose: parseInt(e.currentTarget.dataset.code)
-    });
+    })
   },
   getInputValue: function (e) {
     this.setData({
@@ -30,13 +29,13 @@ Page({
   },
   confirm: function () {
     if (this.data.content) {
-      let data = {
+      const data = {
         type: this.data.choose,
-        title: this.data.content.slice(0,19),
+        title: this.data.content.slice(0, 19),
         content: this.data.content
       }
       wx.showLoading({
-        title: '正在提交...',
+        title: '正在提交...'
       })
       qcloud.request({
         login: true,
@@ -46,13 +45,13 @@ Page({
         success: res => {
           console.log('[feedback][success]', res)
           util.showSuccess('反馈成功！')
-          setTimeout(function(){
+          setTimeout(function () {
             wx.navigateBack({})
           }, 1500)
         },
-        fail: err =>{
+        fail: err => {
           util.showSuccess('反馈失败！')
-          console.log('[feedback][err]',err)
+          console.log('[feedback][err]', err)
         },
         complete: res => {
           wx.hideLoading()
@@ -64,8 +63,8 @@ Page({
   onReady: function () { },
   onShow: function () {
     wx.setNavigationBarTitle({
-      title: "反馈"
-    });
+      title: '反馈'
+    })
   },
   onHide: function () {
   },
@@ -74,8 +73,8 @@ Page({
   onReachBottom: function () { },
   onShareAppMessage: function () {
     return {
-      title: "碎片时间学编程",
-      path: "/pages/main/main"
-    };
+      title: '碎片时间学编程',
+      path: '/pages/main/main'
+    }
   }
-});
+})

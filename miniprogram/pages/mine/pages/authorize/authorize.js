@@ -1,10 +1,9 @@
-let util = require('../../../../utils/util.js')
-let app = getApp()
+const util = require('../../../../utils/util.js')
 
 Page({
-  data:{
-    content: "",
-    code: "PASS"
+  data: {
+    content: '',
+    code: 'PASS'
   },
 
   getInputValue: function (e) {
@@ -13,8 +12,8 @@ Page({
     })
     console.log(e.detail.value)
   },
-  submit: function(){
-    if (this.data.content == this.data.code) {
+  submit: function () {
+    if (this.data.content === this.data.code) {
       util.showSuccess('授权成功')
       wx.setStorageSync('permission', 1)
     } else {
@@ -22,4 +21,4 @@ Page({
       wx.setStorageSync('permission', 0)
     }
   }
-});
+})

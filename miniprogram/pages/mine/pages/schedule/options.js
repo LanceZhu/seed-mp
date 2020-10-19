@@ -1,4 +1,4 @@
-let chart = {
+const chart = {
   title: {
     show: false
   },
@@ -41,14 +41,14 @@ let chart = {
   }]
 }
 
-//饼状图，显示各章节正确率
-let pie = {
+// 饼状图，显示各章节正确率
+const pie = {
   title: {
-    text: '做题数',
+    text: '做题数'
   },
   tooltip: {
     trigger: 'item',
-    formatter: "{b}: {c} ({d}%)"
+    formatter: '{b}: {c} ({d}%)'
   },
   legend: {
     type: 'plain',
@@ -118,7 +118,7 @@ let pie = {
         }
       },
       data: [
-        { value: 0, name:'第一章'},
+        { value: 0, name: '第一章' },
         { value: 0, name: '第二章' },
         { value: 0, name: '第三章' },
         { value: 0, name: '第四章' },
@@ -130,7 +130,7 @@ let pie = {
   ]
 }
 
-let radar = {
+const radar = {
   title: {
     text: '各章节正确率',
     textStyle: {

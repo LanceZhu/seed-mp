@@ -6,4 +6,5 @@ template
 towxml
 utils/lodash.foreach
 vendor
-pages/mine/pages/ec-canvas
+pages/mine/pages/ec-canvas/echarts.js
+pages/mine/pages/ec-canvas/wx-canvas.js

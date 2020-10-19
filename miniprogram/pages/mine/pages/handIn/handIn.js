@@ -1,10 +1,10 @@
 Page({
   data: {
-    text: '',
+    text: ''
   },
- 
+
   listenerInput: function (e) {
-    this.data.text = e.detail.value;
+    this.data.text = e.detail.value
   },
   listenerLogin: function () {
 
@@ -17,8 +17,8 @@ Page({
   onUnload: function () {},
   onShareAppMessage: function () {
     return {
-      title: "碎片时间学编程",
-      path: "/pages/main/main"
-    };
+      title: '碎片时间学编程',
+      path: '/pages/main/main'
+    }
   }
 })

@@ -1,16 +1,14 @@
-let qcloud = require('../../../../vendor/wafer2-client-sdk/index.js')
-let config = require('../../../../config.js')
-let app =getApp()
-let util = require('../../../../utils/util.js')
 // init calendar
-import initCalendar, { getSelectedDay, jumpToToday } from '../../../../template/calendar/index.js';
+import initCalendar from '../../../../template/calendar/index.js'
 import options from './options.js'
 
 // init echart
 import * as echarts from '../ec-canvas/echarts'
-let chart = null
+const qcloud = require('../../../../vendor/wafer2-client-sdk/index.js')
+const app = getApp()
+const util = require('../../../../utils/util.js')
 
-function initChart(chart, option) {
+function initChart (chart, option) {
   chart.setOption(option)
 }
 
@@ -46,16 +44,16 @@ Page({
     dateShow: false,
     selectedDate: {},
     chartOption: options.chart,
-    pieOption: options.pie,//饼状图
-    radarOption: options.radar,//显示各章节正确率
+    pieOption: options.pie, // 饼状图
+    radarOption: options.radar, // 显示各章节正确率
     diary: [],
     touchStart: 0,
     user: {},
-    days: 0,
+    days: 0
   },
 
   // method
-  getOption(event) {
+  getOption (event) {
     if (this.data.dateShow) {
       this.pickDate()
     }
@@ -65,23 +63,23 @@ Page({
     this.getChoosenDate(this.data.choose)
   },
 
-  pickDate() {
+  pickDate () {
     console.log('choose', this.data.choose)
     if (this.data.choose !== 'week') return
     this.setData({
       dateShow: !this.data.dateShow
     })
-    console.log('dateShow',this.data.dateShow)
+    console.log('dateShow', this.data.dateShow)
   },
 
-  getChoosenDate(type, currentSelected) {
-    type = type ? type : 'week'
-    let date = this.getDateObj(currentSelected)
-    let handleDate = {
-      'week': function () {
+  getChoosenDate (type, currentSelected) {
+    type = type || 'week'
+    const date = this.getDateObj(currentSelected)
+    const handleDate = {
+      week: function () {
         return this.getWeek(date)
       },
-      'month': function () {
+      month: function () {
         return this.getMonth(date)
       },
       year: function () {
@@ -89,7 +87,7 @@ Page({
       }
     }
 
-    let selectedDate = handleDate[type].call(this)
+    const selectedDate = handleDate[type].call(this)
     this.setData({
       selectedDate: selectedDate
     })
@@ -97,18 +95,18 @@ Page({
     this.getAverageData()
   },
 
-  getAverageData() {
+  getAverageData () {
     var forEach = getApp().lodash.forEach
-    let selectedDate = this.data.selectedDate
-    let type = this.data.choose
-    let getKeyName = {
-      'week': function (date) {
+    const selectedDate = this.data.selectedDate
+    const type = this.data.choose
+    const getKeyName = {
+      week: function (date) {
         return (date.getMonth() + 1) + '/' + date.getDate()
       },
-      'month': function (date) {
-        let start = Number(selectedDate.start)
-        let end = Number(selectedDate.end)
-        let timestamp = 7 * 24 * 60 * 60 * 1000
+      month: function (date) {
+        const start = Number(selectedDate.start)
+        const end = Number(selectedDate.end)
+        const timestamp = 7 * 24 * 60 * 60 * 1000
         if (date.getTime() > start && date.getTime() < start + timestamp * 1) {
           return '第一周'
         }
@@ -122,19 +120,19 @@ Page({
           return '第四周'
         }
       },
-      'year': function (date) {
-        let temp = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+      year: function (date) {
+        const temp = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
         return temp[date.getMonth()]
       }
     }
 
-    let tempObj = {}
-    let data = this.data.diary
+    const tempObj = {}
+    const data = this.data.diary
     forEach(data, (obj) => {
       let date, keyName
       forEach(obj, (key, val) => {
         if (Number(key) < Number(selectedDate.start) || Number(key) >= Number(selectedDate.end)) return
-        //date = new Date(Number(key))
+        // date = new Date(Number(key))
         date = new Date(key)
         keyName = getKeyName[type](date)
         if (!tempObj[keyName]) {
@@ -145,55 +143,58 @@ Page({
     })
     console.log('[tempObj]', tempObj)
 
-    let average = function (arr) {
+    const average = function (arr) {
       let sum = 0
       for (let i = 0; i < arr.length; i++) {
-        //sum = sum + arr[i]
-        sum+=1
+        // sum = sum + arr[i]
+        sum += 1
       }
-      //return sum / arr.length
+      // return sum / arr.length
       return sum
     }
 
-    let dataObj = {
+    const dataObj = {
       label: [],
       value: []
     }
     switch (type) {
-      case 'week':
-        let timestamp = 24 * 60 * 60 * 1000
+      case 'week': {
+        const timestamp = 24 * 60 * 60 * 1000
         let date, day
         for (let i = Number(selectedDate.start); i < Number(selectedDate.end); i = i + timestamp) {
           date = new Date(i)
           day = (date.getMonth() + 1) + '/' + date.getDate()
           dataObj.label.push(day)
           dataObj.value.push(tempObj[day] ? average(tempObj[day]) : 0)
-          //dataObj.value.push(tempObj[day].length ? tempObj[day].length : 0)
+          // dataObj.value.push(tempObj[day].length ? tempObj[day].length : 0)
         }
         console.log('[schedule][dataObj]', dataObj)
         break
-      case 'month':
-        let weekArr = ['第一周', '第二周', '第三周', '第四周']
+      }
+      case 'month': {
+        const weekArr = ['第一周', '第二周', '第三周', '第四周']
         forEach(weekArr, (val) => {
           dataObj.label.push(val)
           dataObj.value.push(tempObj[val] ? average(tempObj[val]) : 0)
         })
         console.log('[schedule][dataObj]', dataObj)
         break
-      case 'year':
-        let monthArr = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+      }
+      case 'year': {
+        const monthArr = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
         forEach(monthArr, (val) => {
           dataObj.label.push(val)
           dataObj.value.push(tempObj[val] ? average(tempObj[val]) : 0)
         })
         console.log('[schedule][dataObj]', dataObj)
         break
+      }
     }
 
-    let chartOption = this.data.chartOption
+    const chartOption = this.data.chartOption
     chartOption.xAxis.data = dataObj.label
     chartOption.series[0].data = dataObj.value
-    //chartOption.series[0].data = [10, 20, 30, 40, 50, 60, 70]
+    // chartOption.series[0].data = [10, 20, 30, 40, 50, 60, 70]
 
     if (!this.chart) {
       this.chartComponent.init((canvas, width, height) => {
@@ -208,11 +209,10 @@ Page({
     } else {
       this.chart.setOption(chartOption)
     }
-
   },
 
-  getDateObj(timestamp) {
-    let date = timestamp ? new Date(timestamp) : new Date()
+  getDateObj (timestamp) {
+    const date = timestamp ? new Date(timestamp) : new Date()
     return {
       str: date.getFullYear() + '年' + (date.getMonth() + 1) + '月' + date.getDate() + '日',
       year: date.getFullYear(),
@@ -221,11 +221,11 @@ Page({
     }
   },
 
-  getWeek(dateObj) {
-    let timestamp = 24 * 60 * 60 * 1000
-    let selected = new Date(dateObj.year, dateObj.month - 1, dateObj.day)
-    let start = new Date(selected.getTime() - 3 * timestamp)
-    let end = new Date(selected.getTime() + 4 * timestamp)
+  getWeek (dateObj) {
+    const timestamp = 24 * 60 * 60 * 1000
+    const selected = new Date(dateObj.year, dateObj.month - 1, dateObj.day)
+    const start = new Date(selected.getTime() - 3 * timestamp)
+    const end = new Date(selected.getTime() + 4 * timestamp)
     return {
       str: start.getFullYear() + '年' + (start.getMonth() + 1) + '月' + start.getDate() + '日' + '至' + end.getFullYear() + '年' + (end.getMonth() + 1) + '月' + (end.getDate() - 1) + '日',
       start: start.getTime(),
@@ -234,9 +234,9 @@ Page({
     }
   },
 
-  getMonth(dateObj) {
-    let endMonth = dateObj.month === 12 ? 1 : dateObj.month + 1
-    let endYear = dateObj.month === 12 ? dateObj.year + 1 : dateObj.year
+  getMonth (dateObj) {
+    const endMonth = dateObj.month === 12 ? 1 : dateObj.month + 1
+    const endYear = dateObj.month === 12 ? dateObj.year + 1 : dateObj.year
     return {
       str: dateObj.year + '年' + dateObj.month + '月',
       start: new Date(dateObj.year, dateObj.month - 1, 1).getTime(),
@@ -245,7 +245,7 @@ Page({
     }
   },
 
-  getYear(dateObj) {
+  getYear (dateObj) {
     return {
       str: dateObj.year + '年',
       start: new Date(dateObj.year, 1, 1).getTime(),
@@ -254,9 +254,9 @@ Page({
     }
   },
 
-  getHandleDate(e) {
-    let date = new Date(this.data.selectedDate.selected)
-    let eventHandle = e.handle ? e.handle : e.currentTarget.dataset.handle
+  getHandleDate (e) {
+    const date = new Date(this.data.selectedDate.selected)
+    const eventHandle = e.handle ? e.handle : e.currentTarget.dataset.handle
     let handle
     switch (eventHandle) {
       case 'pre':
@@ -267,13 +267,13 @@ Page({
         break
     }
 
-    let type = this.data.choose
-    let handleDate = {
-      'week': function () {
-        let timestamp = 7 * 24 * 60 * 60 * 1000
+    const type = this.data.choose
+    const handleDate = {
+      week: function () {
+        const timestamp = 7 * 24 * 60 * 60 * 1000
         return this.getWeek(this.getDateObj(date.getTime() + timestamp * handle))
       },
-      'month': function () {
+      month: function () {
         let endMonth, endYear
         if (date.getMonth() + 1 === 1) {
           endYear = handle === -1 ? date.getFullYear() - 1 : date.getFullYear()
@@ -288,12 +288,12 @@ Page({
         console.log(endMonth)
         return this.getMonth(this.getDateObj(new Date(endYear, endMonth - 1, date.getDate()).getTime()))
       },
-      'year': function () {
+      year: function () {
         return this.getYear(this.getDateObj(new Date(date.getFullYear() + handle, date.getMonth(), date.getDate()).getTime()))
       }
     }
 
-    let changedDate = handleDate[type].call(this)
+    const changedDate = handleDate[type].call(this)
     this.setData({
       selectedDate: changedDate
     })
@@ -301,14 +301,14 @@ Page({
     this.getAverageData()
   },
 
-  handleTouchStart(e) {
+  handleTouchStart (e) {
     this.setData({
       touchStart: e.touches[0].pageX
     })
   },
 
-  handleTouchEnd(e) {
-    let result = e.changedTouches[0].pageX - this.data.touchStart
+  handleTouchEnd (e) {
+    const result = e.changedTouches[0].pageX - this.data.touchStart
     if (result < 70 && result > -70) return
     let handle
     if (result >= 70) {
@@ -319,17 +319,17 @@ Page({
     this.getHandleDate({ handle })
   },
 
-  handleTouchMove(e) {
+  handleTouchMove (e) {
 
   },
 
-  getDays(data) {
-    let _ = getApp().lodash
-    let dateArr = _.map(data, val => _.keys(val)[0])
-    let dateObj = {}
+  getDays (data) {
+    const _ = getApp().lodash
+    const dateArr = _.map(data, val => _.keys(val)[0])
+    const dateObj = {}
     _.forEach(dateArr, val => {
-      let date = new Date(Number(val))
-      let str = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
+      const date = new Date(Number(val))
+      const str = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
       if (!dateObj[str]) {
         dateObj[str] = 0
       }
@@ -341,8 +341,8 @@ Page({
   },
 
   // 显示饼状图
-  showPie(data) {
-    let option = this.data.pieOption
+  showPie (data) {
+    const option = this.data.pieOption
     /*
     if (data.length > 0) {
       let vals = []
@@ -364,7 +364,7 @@ Page({
       console.log(values)
     }
     */
-    let values = option.series[0].data
+    const values = option.series[0].data
     getApp().lodash.forEach(values, (val, index) => {
       values[index].value = data[index]
     })
@@ -378,13 +378,12 @@ Page({
       this.pie = pie
       return pie
     })
-  }, 
+  },
 
-  //显示雷达图，各章节正确率
-  showRadar(data) {
-    var that = this
-    let option = this.data.radarOption
-    //option.series[0].data[0].value = ['1', '0.3', '0.3', '0.3', '0.3']//data_chapter_right_ratio
+  // 显示雷达图，各章节正确率
+  showRadar (data) {
+    const option = this.data.radarOption
+    // option.series[0].data[0].value = ['1', '0.3', '0.3', '0.3', '0.3']//data_chapter_right_ratio
     option.series[0].data[0].value = data
     this.radarComponent.init((canvas, width, height) => {
       const radar = echarts.init(canvas, null, {
@@ -402,7 +401,7 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '学习报告',
+      title: '学习报告'
     })
   },
 
@@ -411,10 +410,10 @@ Page({
    */
   onReady: function () {
     this.chartComponent = this.selectComponent('#mychart-dom-bar')
-    this.pieComponent = this.selectComponent("#pie-dom-bar")
+    this.pieComponent = this.selectComponent('#pie-dom-bar')
     this.radarComponent = this.selectComponent('#radar-dom-bar')
-    let _this = this
-    let that = this
+    const _this = this
+    const that = this
     _this.showPie([])
     qcloud.request({
       login: true,
@@ -430,12 +429,12 @@ Page({
         })
         this.getChoosenDate(this.data.choose)
       },
-      fail: err=> {
+      fail: err => {
         console.log('[history][fail]', err)
       }
     })
 
-    //请求各章节错题书
+    // 请求各章节错题书
     qcloud.request({
       login: true,
       url: `${app.appData.baseUrl}question_history`,
@@ -444,12 +443,12 @@ Page({
         type: 'answer_detail_update'
       },
       success: (res) => {
-        let data_error = []
-        let data = res.data.data
-        let data_chapter = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //十个章节
-        let data_chapter_right = [0, 0, 0, 0, 0, 0, 0, 0, 0] //十个章节
-        let data_chapter_right_ratio = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] //十个章节
-        for (let i in data) {
+        const data_error = []
+        const data = res.data.data
+        const data_chapter = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // 十个章节
+        const data_chapter_right = [0, 0, 0, 0, 0, 0, 0, 0, 0] // 十个章节
+        const data_chapter_right_ratio = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0] // 十个章节
+        for (const i in data) {
           data_chapter[parseInt(data[i].chapter_id) - 1]++
           if (data[i].answer_right) {
             data_chapter_right[parseInt(data[i].chapter_id) - 1]++
@@ -458,7 +457,7 @@ Page({
             data_error.push(data[i])
           }
         }
-        for (let i in data_chapter) {
+        for (const i in data_chapter) {
           if (data_chapter[i]) {
             console.log(data_chapter_right[i] / data_chapter[i])
             data_chapter_right_ratio[i] = data_chapter_right[i] / data_chapter[i]
@@ -478,9 +477,9 @@ Page({
           question_error_sum: data_error.length
         })
       },
-      fail(error) {
-        util.showSuccess('请求失败');
-        console.log('[request fail]', error);
+      fail (error) {
+        util.showSuccess('请求失败')
+        console.log('[request fail]', error)
       },
       complete: res => {
         wx.hideLoading()
@@ -501,11 +500,11 @@ Page({
        * @param { array } allSelectedDays 选择的所有日期（当mulit为true时，才有allSelectedDays参数）
        */
       afterTapDay: (currentSelect, allSelectedDays) => {
-        let date = new Date(currentSelect.year, currentSelect.month - 1, currentSelect.day).getTime()
+        const date = new Date(currentSelect.year, currentSelect.month - 1, currentSelect.day).getTime()
         console.log(currentSelect)
         this.getChoosenDate(this.data.choose, date)
         this.pickDate()
-      },
+      }
       /**
        * 日期点击事件（此事件
        * 会完全接管点击事件）
@@ -552,8 +551,8 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: "碎片时间学编程",
-      path: "/pages/main/main"
-    };
+      title: '碎片时间学编程',
+      path: '/pages/main/main'
+    }
   }
 })

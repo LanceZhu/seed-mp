@@ -1,12 +1,12 @@
-//用于转发时向用户关系表中更新一条转发记录(个人为person，群为GId)
+// 用于转发时向用户关系表中更新一条转发记录(个人为person，群为GId)
 const qcloud = require('../vendor/wafer2-client-sdk/index')
-function upDateShareInfoToUser_network(app, page, share_res) {
-  let upDate = (content, clickId) => {
+function upDateShareInfoToUser_network (app, page, share_res) {
+  const upDate = (content, clickId) => {
     qcloud.request({
       login: false,
       data: {
         clickId,
-        content,
+        content
       },
       url: app.appData.baseUrl + 'upDateShareInfoToUserNetwork',
       success: (res) => { }
@@ -14,7 +14,7 @@ function upDateShareInfoToUser_network(app, page, share_res) {
   }
   const shareTickets = share_res.shareTickets
   if (!shareTickets) {
-    //IOS转发给个人的时候shareTickets为null
+    // IOS转发给个人的时候shareTickets为null
     upDate('person', app.appData.currentClickId)
   } else {
     wx.getShareInfo({
@@ -30,13 +30,13 @@ function upDateShareInfoToUser_network(app, page, share_res) {
           },
           url: app.appData.baseUrl + 'getGId',
           success: (res) => {
-            let GId = res.data.data
+            const GId = res.data.data
             upDate(GId, app.appData.currentClickId)
           }
         })
       },
       fail: (res) => {
-        //Android转发给个人的时候shareTickets不为null,而是判断为fail
+        // Android转发给个人的时候shareTickets不为null,而是判断为fail
         upDate('person', app.appData.currentClickId)
       }
     })
