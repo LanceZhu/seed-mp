@@ -43,7 +43,7 @@
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#6A84E3",
-        "navigationBarTitleText": "线上学习",
+        "navigationBarTitleText": "Arduino 快速入门",
         "navigationBarTextStyle": "white"
     },
     "sitemapLocation": "sitemap.json"

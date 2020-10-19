@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'webfont';
+  font-display: swap;
+  src: url('//at.alicdn.com/t/webfont_1hnj332vka2.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/webfont_1hnj332vka2.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/webfont_1hnj332vka2.woff2') format('woff2'),
+  url('//at.alicdn.com/t/webfont_1hnj332vka2.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/webfont_1hnj332vka2.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/webfont_1hnj332vka2.svg#思源黑体-粗') format('svg'); /* iOS 4.1- */
+}
+
 .device{
   background: #fff;
   display: flex;
@@ -7,6 +18,7 @@
 }
 
 .content{
+  font-family: "webfont" !important;
   background: #fff;
   height: 100%;
   width:100%;
