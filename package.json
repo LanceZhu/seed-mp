@@ -1,0 +1,26 @@
+{
+  "name": "seed-mp",
+  "version": "1.0.0",
+  "description": "Arduino 快速入门",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LanceZhu/seed-mp.git"
+  },
+  "keywords": [
+    "miniprogram",
+    "Arduino",
+    "ws"
+  ],
+  "author": "LanceZhu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LanceZhu/seed-mp/issues"
+  },
+  "homepage": "https://github.com/LanceZhu/seed-mp#readme"
+}
