@@ -23,8 +23,7 @@
         "pages/single/spark/single",
         "pages/single/spark/tutorial/tutorial",
         "pages/basic/productDesign/designDetail/designDetail",
-        "pages/basic/productDesign/design",
-        "pages/welcome/welcome"
+        "pages/basic/productDesign/design"
     ],
     "subpackages": [
         {

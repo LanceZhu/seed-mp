@@ -34,6 +34,7 @@ Page({
                 that.setData({
                     programs: res.data.data
                 })
+                console.log(this.programs)
             },
             fail (error) {
                 util.showSuccess('请求失败!')

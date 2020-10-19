@@ -17,9 +17,9 @@
     </view>
     <view class='notification'>
       <view class='title'>
-        <image src='/images/notification.svg' style='width: 40rpx; height: 40rpx'></image>
+        <image src='cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/notification.svg' style='width: 40rpx; height: 40rpx'></image>
         <view class='desc'>功能</view>
-        <!-- <image src='/images/more.png' style='width: 30rpx; height: 30rpx'></image> -->
+        <!-- <image src='cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/more.png' style='width: 30rpx; height: 30rpx'></image> -->
       </view>
 
       <view class='programs'>

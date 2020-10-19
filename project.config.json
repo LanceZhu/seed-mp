@@ -80,12 +80,6 @@
                 },
                 {
                     "id": -1,
-                    "name": "欢迎页",
-                    "pathName": "pages/welcome/welcome",
-                    "query": ""
-                },
-                {
-                    "id": -1,
                     "name": "授权页",
                     "pathName": "pages/authorize/authorize"
                 }

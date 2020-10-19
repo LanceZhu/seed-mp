@@ -13,7 +13,6 @@ Page({
         userInfo: {},
         res: '',
         broadcast: 1,
-        showWelcome: 0
     },
 
     jumpToDetail: function (e) {
@@ -47,14 +46,6 @@ Page({
             console.log('[main]login please')
         } else {
             console.log('[main]login success')
-            if (that.data.showWelcome) {
-                this.setData({
-                    showWelcome: 0
-                })
-                wx.navigateTo({
-                    url: '../welcome/welcome'
-                })
-            }
         }
         wx.showShareMenu({
             withShareTicket: true

@@ -4,7 +4,7 @@
   <scroll-view scroll-y style="height:{{winHeight - 150}}px">
     <view class='content'>
       <view wx:for="{{programs}}" wx:key="program" class='box' bindtap='jumpToDetail' data-id='{{item.id}}'>
-        <image src='/images/{{item.img}}' class='software'></image>
+        <image src='{{item.img}}' class='software'></image>
         <view class='text'>
           <view class='title'>{{item.title}}</view>
           <view class='subtitle'>

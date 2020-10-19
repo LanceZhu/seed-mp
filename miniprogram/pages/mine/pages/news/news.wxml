@@ -3,11 +3,11 @@
   <view class='content'>
       <view class='programs'>
         <view class = 'program'>
-          <image src='/images/lettered.svg' class='image1'></image>
+          <image src='cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/lettered.svg' class='image1'></image>
           <view class = 'text'>未读消息：0</view>
         </view>
         <view class='program'>
-         <image src='/images/letterop.svg' class='image2'></image>
+         <image src='cloud://production-7gzyk6ja759cf75a.7072-production-7gzyk6ja759cf75a-1253604577/images/letterop.svg' class='image2'></image>
          <view class ='text'>已读消息：0</view>
         </view>
       </view>
