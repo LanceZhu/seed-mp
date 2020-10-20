@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "programs-portal": "/components/programs-portal/programs-portal"
-  }
+  },
+  "navigationBarTitleText": "新知学习"
 }

@@ -1,0 +1,31 @@
+<view>
+    <view class="title">
+        学号绑定
+    </view>
+
+    <view class="content" wx:if="{{!isBind}}">
+        <form bindsubmit="bindStudentId">
+            <view>
+                学号：
+                <input type="text" name="studentId" placeholder="请输入学号" />
+            </view>
+            <view>
+                姓名：
+                <input type="text" name="studentName" placeholder="请输入姓名" />
+            </view>
+            <button style="margin: 30rpx 0" type="primary" formType="submit">绑定学号</button>
+        </form>
+        <text class="info">
+            双培生姓名后需加 (双培),括号为英文括号。
+            示例：张三(双培)
+        </text>
+    </view>
+    <view class="content" wx:else>
+        <view style="font-size: 16px; font-weight: bold; margin-bottom: 5px">已绑定</view>
+        <view>学号：{{studentId}}</view>
+        <view>姓名：{{studentName}}</view>
+        <button style="margin: 30rpx 0" type="primary" bindtap="unbindStudentId">解绑</button>
+    </view>
+
+    <van-toast id="van-toast" />
+</view>

@@ -1,5 +1,5 @@
-// 此处主机域名修改成腾讯云解决方案分配的域名
-const host = 'https://f00bar.top'
+const host = 'https://f00bar.top' // 线上环境
+// const host = 'http://localhost:5757' // 本地开发环境
 var appId = 'wx671c2ea3d46645f0' // Arduino快速入门
 // var appId = 'wxe202bb6b25596b91' // 火星派Arduino
 

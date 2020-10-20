@@ -36,7 +36,8 @@
                 "pages/mistake/mistake",
                 "pages/news/news",
                 "pages/schedule/schedule",
-                "pages/authorize/authorize"
+                "pages/authorize/authorize",
+                "pages/student_daolun_2020/index"
             ]
         }
     ],

@@ -25,6 +25,14 @@
         link-type="navigateTo"
         url="{{item.url}}"/>
      </van-cell-group>
+     <van-cell-group title="北邮导论2020">
+      <van-cell
+        is-link
+        title="学号绑定"
+        icon="user-circle-o"
+        link-type="navigateTo"
+        url="./student_daolun_2020/index"/>
+     </van-cell-group>
      <van-cell-group title="其他">
       <van-cell
         is-link
