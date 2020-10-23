@@ -99,6 +99,13 @@
                     "id": -1,
                     "name": "pages/mine/pages/student_daolun_2020/index",
                     "pathName": "pages/mine/pages/student_daolun_2020/index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "id": -1,
+                    "name": "pages/socket/index",
+                    "pathName": "pages/socket/index",
                     "scene": null
                 }
             ]
