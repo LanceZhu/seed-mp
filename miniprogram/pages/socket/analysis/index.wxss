@@ -1,0 +1,3 @@
+/* miniprogram/pages/socket/analysis/index.wxss */
+@import '/towxml/style/main_min.wxss';
+@import '/towxml/style/theme/min.wxss';

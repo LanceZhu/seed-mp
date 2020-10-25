@@ -1,0 +1,6 @@
+<!--miniprogram/pages/socket/analysis/index.wxml-->
+<view>
+  <import src="/towxml/entry.wxml"/>
+  <template is="entry" data="{{...question.ask}}"/>
+</view>
+<button bindtap="nextQuestion">继续练习</button>
