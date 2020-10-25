@@ -1,1 +1,46 @@
 /* miniprogram/pages/socket/index.wxss */
+@import '/towxml/style/main_min.wxss';
+@import '/towxml/style/theme/min.wxss';
+page {
+  height: 100%;
+}
+
+.wrapper {
+  height: 100%;
+}
+
+.question-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #6A84E3;
+  align-items: center;
+}
+
+.desc-wrapper {
+  width: 650rpx;
+  flex: 1;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+}
+
+.answer-wrapper {
+  height: 592rpx;
+}
+
+.answer {
+  border: 2px solid #FFFFFF;
+  border-radius: 50rpx;
+  width: 600rpx;
+  height: 100rpx;
+  text-align: center;
+  background: #6A84E3;
+  color: #fff;
+  margin-bottom: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:0rpx 25rpx;
+  font-size: 34rpx;
+}

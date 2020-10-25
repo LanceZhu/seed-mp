@@ -54,11 +54,21 @@ var setDeviceSize = (page) => {
   })
 }
 
+// 睡眠 time ms
+const sleep = async (time) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, time)
+  })
+}
+
 module.exports = {
   formatTime,
   formatDate,
   showBusy,
   showSuccess,
   showModel,
-  setDeviceSize
+  setDeviceSize,
+  sleep
 }
