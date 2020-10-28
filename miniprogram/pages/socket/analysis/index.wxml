@@ -1,6 +1,25 @@
 <!--miniprogram/pages/socket/analysis/index.wxml-->
-<view>
+<view class="question">
   <import src="/towxml/entry.wxml"/>
   <template is="entry" data="{{...question.ask}}"/>
+  <view class="desc">
+    所有选项：
+  </view>
+  <view wx:for="{{question.answer}}" class="choice">
+    {{ index + 1 }}、{{ item.answer }}
+  </view>
+  <view class="desc">
+    正确答案：
+  </view>
+  <view class="choice">
+    {{ rightAnswer }}
+  </view>
 </view>
-<button bindtap="nextQuestion">继续练习</button>
+<view class="analysis">
+  {{ question.analysis }}
+</view>
+<view class="next-wrapper">
+  <view bindtap="nextQuestion" class="next">
+    继续练习
+  </view>
+</view>

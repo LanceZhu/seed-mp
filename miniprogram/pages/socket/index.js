@@ -1,3 +1,4 @@
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
 const { sleep } = require('../../utils/util')
 const app = getApp()
 
@@ -30,7 +31,7 @@ Page({
 
   initSocket (openId, questionOption) {
     wx.connectSocket({
-      url: 'ws://localhost:8001'
+      url: 'ws://f00bar.top:8001'
     })
     wx.onSocketOpen((res) => {
       console.log('open: ', res)
@@ -43,10 +44,17 @@ Page({
         })
       })
     })
-    wx.onSocketMessage((res) => {
+    wx.onSocketMessage(async res => {
       console.log('message: ', res)
       const data = JSON.parse(res.data)
       if (data.type === 'question') {
+        if (data.data.question.length === 0) {
+          Toast('已无题目！')
+          await sleep(1000)
+          wx.navigateBack()
+
+          return
+        }
         const question = data.data.question[0]
         question.ask = app.towxml.toJson(question.ask, 'markdown')
         question.answer = JSON.parse(question.answer)
@@ -60,8 +68,12 @@ Page({
     wx.onSocketClose(res => {
       console.log('close: ', res)
     })
-    wx.onSocketError((res) => {
+    wx.onSocketError(async res => {
       console.log('error: ', res)
+
+      Toast('加载失败！')
+      await sleep(1000)
+      wx.navigateBack()
     })
   },
 
@@ -203,7 +215,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
   onUnload: function () {
-
+    wx.closeSocket()
   },
 
   /**

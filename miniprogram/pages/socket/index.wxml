@@ -1,20 +1,18 @@
 <!--miniprogram/pages/socket/index.wxml-->
 <view class="wrapper">
   <view wx:if="{{ showQuestionOption }}" class="question-selection">
-    <view class="selection-title">
+    <view class="title">
       可一次选择多个要练习的知识点，点击页面下方的“提交”,系统将推荐练习题目
     </view>
       <checkbox-group bindchange="checkboxChange">
-        <view wx:for="{{ chapters }}" wx:key="index">
-          <label>
-            <view style="background-color:{{item.checked ? '#4cb0f9':'#94D0FB'}}; color:{{item.checked ? '#0880d7':'#fff'}}">
-              <checkbox hidden value="{{item.chapter}}" checked="{{item.checked}}"></checkbox>
-              <text>{{item.chapter}}</text>
-            </view>
-          </label>
-        </view>
+        <label wx:for="{{ chapters }}" wx:key="index">
+          <view class="chapter" style="background-color:{{item.checked ? '#4cb0f9':'#94D0FB'}}; color:{{item.checked ? '#0880d7':'#fff'}}">
+            <checkbox hidden value="{{item.chapter}}" checked="{{item.checked}}"></checkbox>
+            <text>{{item.chapter}}</text>
+          </view>
+        </label>
       </checkbox-group>
-      <button bindtap='selectQuesOption'>提交</button>
+      <van-button round type="info" bindtap='selectQuesOption' custom-class="submit">提交</van-button>
   </view>
   <view wx:else class="question-wrapper">
     <view class="desc-wrapper">
@@ -23,14 +21,16 @@
     </view>
     <view class="answer-wrapper">
       <view
-        wx:for="{{ question.answer}}"
-        wx:key="index"
-        data-index="{{ index }}"
-        bindtap="answer"
-        class="answer"
-        style="color: {{ (isChoosed && choiceIndex === index) ? (item.right ? 'yellow' : 'blue') : '' }}">
+       wx:for="{{ question.answer}}"
+       wx:key="index"
+       data-index="{{ index }}"
+       bindtap="answer"
+       class="answer {{ (isChoosed && choiceIndex === index) ? (item.right ? 'right' : 'error') : '' }}"
+      >
         {{ item.answer }} 
       </view>
     </view>
   </view>
 </view>
+
+<van-toast id="van-toast" />
