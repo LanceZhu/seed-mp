@@ -5,7 +5,8 @@ Page({
      * 页面的初始数据
      */
   data: {
-    question: {}
+    question: {},
+    rightAnswer: ''
   },
 
   nextQuestion () {
@@ -18,8 +19,17 @@ Page({
   onLoad: function () {
     const question = wx.getStorageSync('question')
     console.log(question)
+    const { answer } = question
+    let rightAnswer
+    for (let i = 0; i < answer.length; ++i) {
+      if (answer[i].right) {
+        rightAnswer = answer[i].answer
+        break
+      }
+    }
     this.setData({
-      question
+      question,
+      rightAnswer
     })
   },
 
