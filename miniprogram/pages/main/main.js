@@ -3,9 +3,9 @@ const app = getApp()
 Page({
   data: {
     items: [{ title: '新知学习', content: '知识点+题', img: '/images/KnowledgePoint.svg', location: '../basic/basic' },
-      { title: '专属题场', content: '刷题', img: '/images/exercise.svg', location: '../single/single' },
+      { title: '专属题场', content: '刷题', img: '/images/exercise.svg', location: '../questions/index' },
       { title: '参考项目', content: '实例演示', img: '/images/project.svg', location: '../project/project' },
-      { title: '个人中心', content: '用户', img: '/images/user.svg', location: '../mine/pages/mine' }
+      { title: '个人中心', content: '用户', img: '/images/user.svg', location: '../mine/mine' }
     ],
     winWidth: 0,
     winHeight: 0,

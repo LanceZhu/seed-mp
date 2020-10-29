@@ -15,7 +15,7 @@ Page({
 
   continue: function () {
     wx.navigateTo({
-      url: '../../../single/questionMarket/questionMarket' + '?chapterId=' + this.data.chapterId + '&nameId=' + this.data.nameId + '&title=小结' + '&question_counts=3' + '&fromBasicDetail=true'
+      url: '../../../questions/index' + '?chapterId=' + this.data.chapterId + '&nameId=' + this.data.nameId + '&title=小结' + '&question_counts=3' + '&fromBasicDetail=true'
     })
   },
 

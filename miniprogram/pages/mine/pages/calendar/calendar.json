@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "签到查询",
-  "usingComponents": {
-    "header": "/components/header/header"
-  }
-}

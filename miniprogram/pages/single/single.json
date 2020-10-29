@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "专属题场",
-  "usingComponents": {
-    "programs-portal": "/components/programs-portal/programs-portal",
-    "header": "/components/header/header"
-  }
-}
