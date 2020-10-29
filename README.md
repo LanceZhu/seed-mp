@@ -31,7 +31,6 @@
 ├── pages
 ├── project.config.json
 ├── sitemap.json
-├── template
 ├── towxml
 ├── utils
 └── vendor

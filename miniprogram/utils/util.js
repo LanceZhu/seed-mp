@@ -14,14 +14,6 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
-const formatDate = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-
-  return [year, month, day].map(formatNumber).join('-')
-}
-
 // 显示繁忙提示
 var showBusy = text => wx.showToast({
   title: text,
@@ -65,7 +57,6 @@ const sleep = async (time) => {
 
 module.exports = {
   formatTime,
-  formatDate,
   showBusy,
   showSuccess,
   showModel,

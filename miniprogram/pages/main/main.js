@@ -38,22 +38,15 @@ Page({
         wx.setStorageSync('ratio', 750 / res.windowWidth)
       }
     })
-    // 判断用户是否登录
-    if (!app.globalData.userInfo) {
-      wx.navigateTo({
-        url: '/pages/authorize/authorize'
-      })
-      console.log('[main]login please')
-    } else {
-      console.log('[main]login success')
-    }
-    wx.showShareMenu({
-      withShareTicket: true
-    })
   },
   onReady: function () {},
   onShow: function () {
-    this.closeTunnel()
+    // 需登录
+    if (!app.isLogged()) {
+      wx.navigateTo({
+        url: '/pages/authorize/authorize'
+      })
+    }
   },
   onHide: function () {},
   onUnload: function () {},

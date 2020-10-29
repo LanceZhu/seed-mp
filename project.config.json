@@ -103,9 +103,10 @@
                     "scene": null
                 },
                 {
-                    "id": -1,
-                    "name": "pages/socket/index",
-                    "pathName": "pages/socket/index",
+                    "id": 6,
+                    "name": "pages/questions/index",
+                    "pathName": "pages/questions/index",
+                    "query": "",
                     "scene": null
                 }
             ]
