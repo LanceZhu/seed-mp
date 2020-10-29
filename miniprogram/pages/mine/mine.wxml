@@ -1,0 +1,21 @@
+<view class='device'>
+  <header></header>
+  <view class='content'>
+    <!-- user -->
+    <view class='user'>
+      <image class='image' src='{{userInfo.avatarUrl}}'></image>
+      <view class='detail'>
+        <view class='name'>{{userInfo.nickName}}</view>
+      </view>
+    </view>
+    <van-cell-group title="功能">
+      <van-cell is-link wx:for="{{apps}}" wx:key="index" title="{{item.desc}}" icon="{{item.icon}}" link-type="navigateTo" url="{{item.url}}" />
+    </van-cell-group>
+    <van-cell-group title="北邮导论2020">
+      <van-cell is-link title="学号绑定" icon="user-circle-o" link-type="navigateTo" url="./student_daolun_2020/index" />
+    </van-cell-group>
+    <van-cell-group title="其他">
+      <van-cell is-link wx:for="{{utils}}" wx:key="index" title="{{item.desc}}" icon="{{item.icon}}" link-type="navigateTo" url="{{item.url}}" />
+    </van-cell-group>
+  </view>
+</view>
