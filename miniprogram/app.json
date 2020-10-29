@@ -3,46 +3,25 @@
         "pages/main/main",
         "pages/authorize/authorize",
         "pages/basic/basic",
-        "pages/single/single",
-        "pages/double/double",
-        "pages/double/fighting_room/fighting_room",
-        "pages/double/fighting_match/fighting_match",
-        "pages/double/rank_list/rank_list",
-        "pages/double/fighting_sort/fighting_sort",
-        "pages/double/friends_sort/friends_sort",
-        "pages/double/friends_match/friends_match",
-        "pages/project/project",
-        "pages/single/questionMarket/tutorial/tutorial",
-        "pages/single/rankList/rankList",
-        "pages/project/projectDetail/projectDetail",
         "pages/basic/basicArduino/basicDetail/basicDetail",
         "pages/basic/basicArduino/basic",
         "pages/basic/spark/spark",
         "pages/basic/spark/sparkDetail/sparkDetail",
-        "pages/single/questionMarket/questionMarket",
-        "pages/single/spark/single",
-        "pages/single/spark/tutorial/tutorial",
         "pages/basic/productDesign/designDetail/designDetail",
         "pages/basic/productDesign/design",
-        "pages/socket/index",
-        "pages/socket/analysis/index"
+        "pages/project/projectDetail/projectDetail",
+        "pages/questions/index",
+        "pages/questions/analysis/index"
     ],
-    "subpackages": [
-        {
-            "root": "pages/mine/",
-            "pages": [
-                "pages/mine",
-                "pages/calendar/calendar",
-                "pages/ec-canvas/ec-canvas",
-                "pages/feedback/feedback",
-                "pages/mistake/mistake",
-                "pages/news/news",
-                "pages/schedule/schedule",
-                "pages/authorize/authorize",
-                "pages/student_daolun_2020/index"
-            ]
-        }
-    ],
+    "subpackages": [{
+        "root": "pages/mine/",
+        "pages": [
+            "mine",
+            "feedback/feedback",
+            "mistake/mistake",
+            "student_daolun_2020/index"
+        ]
+    }],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#6A84E3",
