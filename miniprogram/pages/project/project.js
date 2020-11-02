@@ -1,49 +1,35 @@
-var app = getApp()
-var qcloud = require('../../vendor/wafer2-client-sdk/index.js')
-var util = require('../../utils/util.js')
+const { showSuccess } = require('../../utils/util')
+const util = require('../../utils/util')
+
+const app = getApp()
+
+const { getPrograms } = app.services
 
 Page({
   data: {
-    programs: [],
-    permission: 0
+    programs: []
   },
 
   jumpToDetail: function (e) {
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: './projectDetail/projectDetail?id=' + id
+      url: './detail/detail?id=' + id
     })
   },
 
-  onLoad: function (options) {
+  onLoad: async function (options) {
     var that = this
-    this.setData({
-      // permission: wx.getStorageSync('permission')
-      permission: 1
-    })
     util.setDeviceSize(that)
     wx.showLoading()
-    qcloud.request({
-      login: false,
-      url: `${app.appData.baseUrl}getPrograms`,
-      method: 'POST',
-      data: {
-        id: ''
-      },
-      success: (res) => {
-        that.setData({
-          programs: res.data.data
-        })
-        console.log(this.programs)
-      },
-      fail (error) {
-        util.showSuccess('请求失败!')
-        console.log('request fail', error)
-      },
-      complete: res => {
-        wx.hideLoading()
-      }
-    })
+    try {
+      const programs = await getPrograms()
+      this.setData({
+        programs
+      })
+    } catch (err) {
+      showSuccess('请求失败！')
+    }
+    wx.hideLoading()
   },
   onShow (e) {
   }

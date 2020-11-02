@@ -1,5 +1,7 @@
 const app = getApp()
 
+const { isLogged } = app.services
+
 Page({
   data: {
     userInfo: {},
@@ -26,13 +28,24 @@ Page({
   },
 
   onLoad: function (options) {
-    var that = this
-    that.setData({
-      userInfo: app.globalData.userInfo
+    const userInfo = wx.getStorageSync('userInfo')
+    this.setData({
+      userInfo
     })
   },
 
-  onShow: function () {},
+  onShow: function () {
+    if (!isLogged()) {
+      wx.navigateTo({
+        url: '/pages/authorize/authorize'
+      })
+    } else {
+      const userInfo = wx.getStorageSync('userInfo')
+      this.setData({
+        userInfo
+      })
+    }
+  },
 
   onShareAppMessage: function () {
     return {

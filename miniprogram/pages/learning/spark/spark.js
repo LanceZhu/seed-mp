@@ -1,6 +1,6 @@
 Page({
   data: {
-    itemss: [
+    items: [
       { name: '自动控制路灯', children: ['代码详解（一）', '硬件搭建（一）', '数字Digital和模拟Analog', 'delay()'], id: 1, open: false },
       { name: '彩色LED的控制', children: ['代码详解（二）', '硬件搭建（二）', 'pinMode()', 'digitalWrite()', 'digitalRead()'], id: 2, open: false },
       { name: '数字温度计', children: ['代码详解（三）', '硬件搭建（三）', 'analogReference()', 'analogRead()'], id: 3, open: false },
@@ -12,41 +12,24 @@ Page({
       { name: '微信小程序', children: ['微信小程序简介', '小程序注册教程', '小程序开发基础教程', '腾讯云服务器购买指南', '域名购买与备案'], id: 9, open: false },
       { name: '云API实验', children: ['Fiddler调用', 'oneNET的接受数据API调用', '微信小程序前端调用', 'Web前端（JQuery）调用', '服务器端（NodeJS）调用', '服务器端（NodeJS）数据库（mongoDB）的基本使用', '服务器端（PHP）调用'], id: 10, open: false }
     ],
-    items: [],
     winHeight: 0,
     winWidth: 0,
     ratio: 0
   },
 
-  // navigator取代
-  navigateToDetail: function (e) {
-    console.log(e.currentTarget.dataset.id)
-    const sortId = e.currentTarget.dataset.id
-    if (!e.currentTarget.dataset.locked) {
-      wx.navigateTo({
-        url: '../sparkDetail/sparkDetail?sort_id=' + sortId
-      })
-    } else {
-      wx.showModal({
-        title: ':<',
-        content: '未开启'
-      })
-    }
-  },
-
   // 打开子菜单
   kindToggle: function (e) {
     var id = Number(e.currentTarget.id)
-    var itemss = this.data.itemss
-    for (var i = 0, len = itemss.length; i < len; ++i) {
-      if (itemss[i].id === id) {
-        itemss[i].open = !itemss[i].open
+    var items = this.data.items
+    for (var i = 0, len = items.length; i < len; ++i) {
+      if (items[i].id === id) {
+        items[i].open = !items[i].open
       } else {
-        itemss[i].open = false
+        items[i].open = false
       }
     }
     this.setData({
-      itemss: itemss
+      items: items
     })
   },
 

@@ -1,21 +1,21 @@
 const app = getApp()
 
+const { isLogged } = app.services
+
 Page({
   data: {
-    items: [{ title: '新知学习', content: '知识点+题', img: '/images/KnowledgePoint.svg', location: '../basic/basic' },
+    items: [
+      { title: '新知学习', content: '知识点+题', img: '/images/KnowledgePoint.svg', location: '../learning/learning' },
       { title: '专属题场', content: '刷题', img: '/images/exercise.svg', location: '../questions/index' },
       { title: '参考项目', content: '实例演示', img: '/images/project.svg', location: '../project/project' },
       { title: '个人中心', content: '用户', img: '/images/user.svg', location: '../mine/mine' }
     ],
     winWidth: 0,
     winHeight: 0,
-    ratio: 0,
-    userInfo: {},
-    res: '',
-    broadcast: 1
+    ratio: 0
   },
 
-  jumpToDetail: function (e) {
+  toDetail: function (e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.location
     })
@@ -42,7 +42,7 @@ Page({
   onReady: function () {},
   onShow: function () {
     // 需登录
-    if (!app.isLogged()) {
+    if (!isLogged()) {
       wx.navigateTo({
         url: '/pages/authorize/authorize'
       })
@@ -56,12 +56,6 @@ Page({
     return {
       title: '碎片时间学编程',
       path: '/pages/main/main'
-    }
-  },
-  closeTunnel () {
-    // 当信道连接或者重连了时，关闭已连接的信道
-    if (app.appData.tunnelStatus === 'connect' || app.appData.tunnelStatus === 'reconnect') {
-      app.tunnel.close()
     }
   }
 })

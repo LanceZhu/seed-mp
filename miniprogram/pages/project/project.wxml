@@ -1,4 +1,4 @@
-<view class='device' style='height: {{ winHeight*ratio}}rpx' wx:if="{{permission}}">
+<view class='device' style='height: {{ winHeight*ratio}}rpx'>
   <header></header>
   <view class='program'>
   <scroll-view scroll-y style="height:{{winHeight - 150}}px">
@@ -15,8 +15,4 @@
     </view>
   </scroll-view>
   </view>
-</view>
-<view wx:if="{{!permission}}">
-  <header></header>
-  <view class='content_no_permission'>未授权用户，功能不开放</view>
 </view>
