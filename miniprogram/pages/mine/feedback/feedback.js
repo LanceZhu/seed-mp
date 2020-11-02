@@ -1,6 +1,7 @@
-const qcloud = require('../../../vendor/wafer2-client-sdk/index')
-const util = require('../../../utils/util.js')
+const { sleep, showSuccess } = require('../../../utils/util.js')
 const app = getApp()
+
+const { feedback } = app.services
 
 Page({
   data: {
@@ -27,36 +28,21 @@ Page({
       content: e.detail.value
     })
   },
-  confirm: function () {
+  confirm: async function () {
     if (this.data.content) {
-      const data = {
-        type: this.data.choose,
-        title: this.data.content.slice(0, 19),
-        content: this.data.content
-      }
       wx.showLoading({
         title: '正在提交...'
       })
-      qcloud.request({
-        login: true,
-        url: `${app.appData.baseUrl}feedback`,
-        method: 'POST',
-        data: data,
-        success: res => {
-          console.log('[feedback][success]', res)
-          util.showSuccess('反馈成功！')
-          setTimeout(function () {
-            wx.navigateBack({})
-          }, 1500)
-        },
-        fail: err => {
-          util.showSuccess('反馈失败！')
-          console.log('[feedback][err]', err)
-        },
-        complete: res => {
-          wx.hideLoading()
-        }
-      })
+      try {
+        await feedback(this.data.choose, this.data.content.slice(0, 19), this.data.content)
+        showSuccess('反馈成功！')
+        await sleep(1500)
+        wx.navigateBack()
+      } catch (err) {
+        showSuccess('反馈失败！')
+        console.error(err)
+      }
+      wx.hideLoading()
     }
   },
   onLoad: function (opt) { },

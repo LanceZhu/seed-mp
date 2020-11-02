@@ -1,4 +1,4 @@
-<view class='device'>
+<!-- <view class='device'>
   <view class='header'>
     <image src='/images/header.png' class='header_image'></image>
   </view>
@@ -38,4 +38,37 @@
       </swiper>
     </view>
   </view>
-</view>
+</view> -->
+
+<van-tabs active="{{ active }}" bind:change="onTabChange" sticky animated swipeable>
+  <van-tab title="错题{{ questionErrorCount ? '('+ questionErrorCount +')': ''}}">
+    <block wx:if="{{ questionError.length === 0 }}">
+      <van-empty description="暂无内容" />
+    </block>
+    <block wx:else>
+      <view wx:for="{{ questionError}}" wx:key="{{ item.question_id }}" class="question">
+        <view class="title">问题{{ item.question_id }}</view>
+        <view class="ask">{{ item.ask }}</view>
+      </view>
+      <view wx:if="{{ loadMore }}" class="more">
+        <van-loading size="24px">加载更多...</van-loading>
+      </view>
+    </block>
+  </van-tab>
+  <van-tab title="已做题{{ questionAllCount ? '('+ questionAllCount +')': ''}}">
+     <block wx:if="{{ questionAll.length === 0 }}">
+      <van-empty description="暂无内容" />
+    </block>
+    <block wx:else>
+      <view wx:for="{{ questionAll }}" wx:key="{{ item.question_id }}" class="question">
+        <view class="title">问题{{ item.question_id }}</view>
+        <view class="ask">{{ item.ask }}</view>
+      </view>
+      <view wx:if="{{ loadMore }}" class="more">
+        <van-loading size="24px">加载更多...</van-loading>
+      </view>
+    </block> 
+  </van-tab>
+</van-tabs>
+
+<van-toast id="van-toast" />

@@ -1,3 +1,9 @@
 {
-  "navigationBarTitleText": "历史错题"
+  "navigationBarTitleText": "历史错题",
+  "usingComponents": {
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-loading": "@vant/weapp/loading/index"
+  }
 }

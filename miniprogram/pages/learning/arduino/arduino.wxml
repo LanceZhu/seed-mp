@@ -6,7 +6,7 @@
 
         <view class="kind-list">
 
-        <block wx:for="{{itemss}}" wx:for-item='chapter' wx:key="{{chapter.id}}">
+        <block wx:for="{{items}}" wx:for-item='chapter' wx:key="{{chapter.id}}">
 
           <view class="kind-list-item">
 
@@ -21,7 +21,7 @@
               <view class="navigator-box {{chapter.open ? 'navigator-box-show' : ''}}">
 
                 <block wx:for="{{chapter.children}}" wx:for-item='unit' wx:key="*item" wx:for-index='index'>
-                  <navigator url="./basicDetail/basicDetail?chapterId={{chapter.id}}&nameId={{index+1}}&chapter={{chapter.name}}&name={{unit}}" class="navigator">
+                  <navigator url="./detail/detail?chapterId={{chapter.id}}&nameId={{index+1}}&chapter={{chapter.name}}&name={{unit}}" class="navigator">
                     <view class="navigator-text">{{unit}}</view>
                     <view class="navigator-arrow"></view>
                   </navigator>

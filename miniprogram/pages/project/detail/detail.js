@@ -1,6 +1,7 @@
 var app = getApp()
-var qcloud = require('../../../vendor/wafer2-client-sdk/index.js')
-var util = require('../../../utils/util.js')
+const { showSuccess } = require('../../../utils/util.js')
+
+const { getProgram } = app.services
 
 Page({
 
@@ -14,31 +15,20 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    var that = this
-    qcloud.request({
-      login: false,
-      url: `${app.appData.baseUrl}getPrograms`,
-      method: 'POST',
-      data: {
-        id: options.id
-      },
-      success: (res) => {
-        var articleData = app.towxml.toJson(res.data.data[0].content, 'markdown', that)
-        articleData.theme = 'light'
-
-        this.setData({
-          article: articleData
-        })
-      },
-      fail (error) {
-        util.showSuccess('请求失败!')
-        console.log('request fail', error)
-      },
-      complete: res => {
-        wx.hideLoading()
-      }
-    })
+  onLoad: async function (options) {
+    const { id } = options
+    try {
+      wx.showLoading()
+      const program = await getProgram(id)
+      console.log(program)
+      this.setData({
+        article: program.content
+      })
+    } catch (err) {
+      showSuccess('请求失败！')
+      console.error(err)
+    }
+    wx.hideLoading()
   },
 
   /**

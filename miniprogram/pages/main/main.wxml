@@ -3,7 +3,7 @@
   <view style='margin-top: 0rpx'>
   <scroll-view scroll-y style="height:{{winHeight - 100}}px">
   <view class='content'>
-    <view wx:for="{{items}}" wx:key="items" class='box' bindtap='jumpToDetail' data-location='{{item.location}}' data-title='{{item.title}}'>
+    <view wx:for="{{items}}" wx:key="items" class='box' bindtap='toDetail' data-location='{{item.location}}' data-title='{{item.title}}'>
         <image src='{{ item.img }}' class='box_image'></image>
       <view class='box_title'>{{item.title}}{{ res }}</view>
     </view>

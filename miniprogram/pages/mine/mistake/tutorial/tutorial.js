@@ -1,4 +1,3 @@
-var qcloud = require('../../../../vendor/wafer2-client-sdk/index.js')
 var util = require('../../../../utils/util.js')
 var app = getApp()
 
@@ -18,8 +17,7 @@ Page({
     wx.showLoading({
       title: '加载中...'
     })
-    qcloud.request({
-      login: true,
+    wx.request({
       url: `${app.appData.baseUrl}question_by_id`,
       method: 'POST',
       data: {

@@ -2,44 +2,27 @@ const util = require('../../../utils/util.js')
 
 Page({
   data: {
-    itemss: [{ name: '团队建设', children: ['吉祥物设计'], id: 1, open: false },
+    items: [{ name: '团队建设', children: ['吉祥物设计'], id: 1, open: false },
       { name: '用户调研', children: ['用户画像', '用户旅程图'], id: '2', open: false },
       { name: '创意产生', children: ['疯狂八分钟'], id: 3, open: false },
       { name: '方向确定', children: ['四象限法'], id: 4, open: false },
       { name: '方案设计', children: ['海报制作'], id: 5, open: false }
-    ],
-    items: []
-  },
-
-  // navigator取代
-  navigateToDetail: function (e) {
-    console.log(e.currentTarget.dataset.id)
-    const sortId = e.currentTarget.dataset.id
-    if (!e.currentTarget.dataset.locked) {
-      wx.navigateTo({
-        url: '../basicDetail/basicDetail?sort_id=' + sortId
-      })
-    } else {
-      wx.showModal({
-        title: ':<',
-        content: '未开启'
-      })
-    }
+    ]
   },
 
   // 打开子菜单
   kindToggle: function (e) {
     var id = Number(e.currentTarget.id)
-    var itemss = this.data.itemss
-    for (var i = 0, len = itemss.length; i < len; ++i) {
-      if (itemss[i].id === id) {
-        itemss[i].open = !itemss[i].open
+    var items = this.data.items
+    for (var i = 0, len = items.length; i < len; ++i) {
+      if (items[i].id === id) {
+        items[i].open = !items[i].open
       } else {
-        itemss[i].open = false
+        items[i].open = false
       }
     }
     this.setData({
-      itemss: itemss
+      items: items
     })
   },
 

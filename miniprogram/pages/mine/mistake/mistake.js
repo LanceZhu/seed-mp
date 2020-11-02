@@ -1,112 +1,116 @@
-const qcloud = require('../../../vendor/wafer2-client-sdk/index.js')
+import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
+
 const app = getApp()
-const util = require('../../../utils/util.js')
+
+const QUESTION_SIZE = 10 // 默认每次请求10个
+
+const { getQuestionHistory } = app.services
 
 Page({
   data: {
-    question_history: [],
-    question_history_errors: [],
-    question_sum: 0,
-    question_error_sum: 0,
-    question_chapter: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // 十个章节
-    question_chapter_right: [0, 0, 0, 0, 0, 0, 0, 0, 0], // 十个章节
-    question_chapter_right_ratio: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], // 十个章节
-    currentTab: 0
-  },
-
-  question_history: function (e) {
-    var that = this
-    wx.showLoading({
-      title: '加载中...'
-    })
-    qcloud.request({
-      login: true,
-      url: `${app.appData.baseUrl}question_history`,
-      method: 'POST',
-      data: {
-        type: 'answer_detail_update'
+    active: 0, // tab
+    questionAll: [],
+    questionAllCount: null,
+    questionError: [],
+    questionErrorCount: null,
+    loadMore: false,
+    questionOptArr: [ // 问题属性 索引对应 active
+      {
+        active: 0,
+        type: 'error',
+        page: 1 // 当前请求数据位置
       },
-      success: (res) => {
-        const data_error = []
-        const data = res.data.data
-        const data_chapter = that.data.question_chapter
-        const data_chapter_right = that.data.question_chapter_right
-        const data_chapter_right_ratio = that.data.question_chapter_right_ratio
-        for (const i in data) {
-          if (data[i].datetime) {
-            const date = new Date(data[i].datetime)
-            data[i].datetime = util.formatTime(date)
-          }
-          data_chapter[parseInt(data[i].chapter_id) - 1]++
-          if (data[i].answer_right) {
-            data_chapter_right[parseInt(data[i].chapter_id) - 1]++
-          }
-          if (!data[i].answer_right) {
-            data_error.push(data[i])
-          }
-        }
-        for (const i in data_chapter) {
-          if (data_chapter[i]) {
-            console.log(data_chapter_right[i] / data_chapter[i])
-            data_chapter_right_ratio[i] = data_chapter_right[i] / data_chapter[i]
-          }
-        }
-        console.log('每章节做题数', data_chapter)
-        console.log('每章节正确数', data_chapter_right)
-        console.log('总正确率', (data.length - data_error.length) / data.length)
-        console.log('各章节正确率', data_chapter_right_ratio)
-        that.setData({
-          question_history: data,
-          question_history_errors: data_error,
-          question_sum: data.length,
-          question_error_sum: data_error.length
-        })
-      },
-      fail (error) {
-        util.showSuccess('请求失败')
-        console.log('[request fail]', error)
-      },
-      complete: res => {
-        wx.hideLoading()
+      {
+        active: 1,
+        type: 'all',
+        page: 1
       }
+    ]
+  },
+
+  // 根据当前 tab 获取问题
+  getQuestions: async function (active) {
+    const questionOpt = this.data.questionOptArr[active]
+    let { type, page } = questionOpt
+
+    const questionHistory = await getQuestionHistory(type, page, QUESTION_SIZE)
+
+    switch (type) {
+      case 'error': {
+        this.setData({
+          questionErrorCount: questionHistory.total,
+          questionError: this.data.questionError.concat(questionHistory.questions)
+        })
+        break
+      }
+      case 'all': {
+        this.setData({
+          questionAllCount: questionHistory.total,
+          questionAll: this.data.questionAll.concat(questionHistory.questions)
+        })
+      }
+    }
+
+    this.data.questionOptArr[active] = Object.assign({}, questionOpt, {
+      page: ++page
     })
   },
 
-  question_detail: function (e) {
-    wx.navigateTo({
-      url: './tutorial/tutorial?questionid=' + e.currentTarget.dataset.questionid
+  async onTabChange (e) {
+    this.setData({
+      active: e.detail.index
     })
-  },
-
-  bindChange: function (e) {
-    this.setData({ currentTab: e.detail.current })
-  },
-
-  swichNav: function (e) {
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false
-    } else {
-      this.setData({
-        currentTab: e.target.dataset.current
+    // 内容为空时，请求数据
+    let questions = []
+    switch (this.data.active) {
+      case 0: {
+        questions = this.data.questionError
+        break
+      }
+      case 1: {
+        questions = this.data.questionAll
+        break
+      }
+      default: {}
+    }
+    if (questions.length === 0) {
+      Toast.loading({
+        message: '加载中...',
+        forbidClick: true
       })
+
+      await this.getQuestions(this.data.active)
+
+      Toast.clear()
     }
   },
 
-  onLoad: function (options) {
-    var that = this
-    that.question_history()
-    that.setData({
-      winHeight: wx.getStorageSync('winHeight'),
-      winWidth: wx.getStorageSync('winWidth'),
-      ratio: wx.getStorageSync('ratio')
+  onLoad: async function (options) {
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true
     })
+
+    await this.getQuestions(this.data.active)
+
+    Toast.clear()
   },
   onReady: function () {},
   onShow: function () {},
   onHide: function () {},
   onUnload: function () {},
   onPullDownRefresh: function () {},
-  onReachBottom: function () {},
+  onReachBottom: async function () {
+    this.setData({
+      loadMore: true
+    })
+
+    await this.getQuestions(this.data.active)
+
+    this.setData({
+      loadMore: false
+    })
+  },
   onShareAppMessage: function () {
     return {
       title: '碎片时间学编程',

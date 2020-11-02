@@ -1,7 +1,9 @@
 // pages/mine//pages/student_daolun_2020/index.js
 import Toast from '../../../miniprogram_npm/@vant/weapp/toast/toast'
-const qcloud = require('../../../vendor/wafer2-client-sdk/index')
 const app = getApp()
+
+const { request } = app.services
+const { BASE_URL } = app.config
 
 Page({
 
@@ -15,18 +17,9 @@ Page({
   },
 
   getStudentInfo: async function () {
-    const res = await new Promise((resolve, reject) => {
-      qcloud.request({
-        login: false,
-        url: `${app.appData.baseUrl}student_daolun_2020/getStudentInfo`,
-        success (res) {
-          resolve(res)
-        },
-        fail (error) {
-          reject(error)
-        }
-      })
-    })
+    const res = await request({
+      url: `${BASE_URL}/student_daolun_2020`
+    }, true)
 
     Toast.clear()
 
@@ -34,7 +27,7 @@ Page({
       return
     }
 
-    const { stuNO, name } = res.data.data
+    const { stuNO, name } = res.data.data.student
     this.setData({
       isBind: true,
       studentId: stuNO,
@@ -49,23 +42,14 @@ Page({
       duration: 0 // 持续展示 toast
     })
 
-    const res = await new Promise((resolve, reject) => {
-      qcloud.request({
-        login: false,
-        url: `${app.appData.baseUrl}student_daolun_2020/bindStudentId`,
-        method: 'POST',
-        data: {
-          studentId,
-          studentName
-        },
-        success (res) {
-          resolve(res)
-        },
-        fail (error) {
-          reject(error)
-        }
-      })
-    })
+    const res = await request({
+      url: `${BASE_URL}/student_daolun_2020`,
+      method: 'POST',
+      data: {
+        studentId,
+        studentName
+      }
+    }, true)
 
     Toast.clear()
 
@@ -86,18 +70,10 @@ Page({
       duration: 0 // 持续展示 toast
     })
 
-    const res = await new Promise((resolve, reject) => {
-      qcloud.request({
-        login: false,
-        url: `${app.appData.baseUrl}student_daolun_2020/unbindStudentId`,
-        success (res) {
-          resolve(res)
-        },
-        fail (error) {
-          reject(error)
-        }
-      })
-    })
+    const res = await request({
+      url: `${BASE_URL}/student_daolun_2020`,
+      method: 'DELETE'
+    }, true)
 
     Toast.clear()
 

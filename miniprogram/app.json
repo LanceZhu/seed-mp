@@ -2,17 +2,21 @@
     "pages": [
         "pages/main/main",
         "pages/authorize/authorize",
-        "pages/basic/basic",
-        "pages/basic/basicArduino/basicDetail/basicDetail",
-        "pages/basic/basicArduino/basic",
-        "pages/basic/spark/spark",
-        "pages/basic/spark/sparkDetail/sparkDetail",
-        "pages/basic/productDesign/designDetail/designDetail",
-        "pages/basic/productDesign/design",
-        "pages/project/projectDetail/projectDetail",
+        "pages/learning/learning",
+        "pages/learning/arduino/arduino",
+        "pages/learning/arduino/detail/detail",
+        "pages/learning/design/design",
+        "pages/learning/design/detail/detail",
+        "pages/learning/spark/spark",
+        "pages/learning/spark/detail/detail",
+        "pages/project/project",
+        "pages/project/detail/detail",
         "pages/questions/index",
         "pages/questions/analysis/index"
     ],
+    "usingComponents": {
+        "van-toast": "@vant/weapp/toast/index"
+    },
     "subpackages": [{
         "root": "pages/mine/",
         "pages": [
