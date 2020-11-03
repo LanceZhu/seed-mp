@@ -2,15 +2,17 @@ import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast'
 const { sleep } = require('../../utils/util')
 const app = getApp()
 
-// miniprogram/pages/socket/index.js
-// 迁移 pages/single/questionMarket，剥离 wafer-node-sdk
+const { SESSION_KEY } = app.config.localStorage
+const { WS_URL } = app.config
+
 Page({
 
   /**
      * 页面的初始数据
      */
   data: {
-    socketId: '', // socket id
+    openid: '', // 用于信道鉴权
+    hasQuestion: true,
     question: {}, // 问题
     choiceIndex: undefined, // 用户回答
     isChoosed: false,
@@ -31,7 +33,10 @@ Page({
 
   initSocket (openId, questionOption) {
     wx.connectSocket({
-      url: 'wss://f00bar.top/wss'
+      url: WS_URL,
+      header: {
+        openid: openId
+      }
     })
     wx.onSocketOpen((res) => {
       console.log('open: ', res)
@@ -50,9 +55,9 @@ Page({
       if (data.type === 'question') {
         if (data.data.question.length === 0) {
           Toast('已无题目！')
-          await sleep(1000)
-          wx.navigateBack()
-
+          this.setData({
+            hasQuestion: false
+          })
           return
         }
         const question = data.data.question[0]
@@ -100,7 +105,7 @@ Page({
         chapters
       }
     }
-    this.initSocket('openId', questionOption)
+    this.initSocket(this.data.openid, questionOption)
   },
 
   // 选择问题章节，多选框状态切换
@@ -148,6 +153,7 @@ Page({
 
     const answer = {
       id: this.data.question.id,
+      isRight: choiceIndex === rightIndex,
       startTime: this.data.startTime,
       endTime: (new Date()).getTime()
     }
@@ -173,21 +179,25 @@ Page({
      * 生命周期函数--监听页面加载
      */
   onLoad: function (options) {
+    const openid = wx.getStorageSync(SESSION_KEY)
+    this.setData({
+      openid
+    })
     // 根据新知学习章节建立 ws 链接
     if (options.fromBasicDetail) {
       this.setData({
         showQuestionOption: false
       })
-      const { chapterId, nameId: unitId, question_counts: counts } = options
+      const { chapterId, nameId: unitId, counts } = options
       const questionOption = {
         type: 'fromBasicDetail',
         data: {
-          chapterId,
-          unitId,
-          counts
+          chapterId: Number(chapterId),
+          unitId: Number(unitId),
+          counts: Number(counts)
         }
       }
-      this.initSocket('openId', questionOption)
+      this.initSocket(this.data.openid, questionOption)
     }
   },
 

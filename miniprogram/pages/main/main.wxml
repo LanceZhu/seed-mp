@@ -1,13 +1,15 @@
-<view class='device'>
-  <header></header>
-  <view style='margin-top: 0rpx'>
-  <scroll-view scroll-y style="height:{{winHeight - 100}}px">
-  <view class='content'>
-    <view wx:for="{{items}}" wx:key="items" class='box' bindtap='toDetail' data-location='{{item.location}}' data-title='{{item.title}}'>
-        <image src='{{ item.img }}' class='box_image'></image>
-      <view class='box_title'>{{item.title}}{{ res }}</view>
+<header></header>
+<view class='content'>
+  <view class="box-wrapper">
+    <view
+      wx:for="{{items}}"
+      wx:key="items"
+      class='box'
+      bindtap='toDetail'
+      data-location='{{item.location}}'
+      data-title='{{item.title}}'>
+      <image src='{{ item.img }}' class='image' style="background-color: {{item.backgroundColor}}"></image>
+      <view class='title'>{{item.title}}{{ res }}</view>
     </view>
-  </view>
-  </scroll-view>
   </view>
 </view>

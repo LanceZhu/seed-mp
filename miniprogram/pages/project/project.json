@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "示例项目",
   "usingComponents":{
-    "header": "/components/header/header"
   }
 }

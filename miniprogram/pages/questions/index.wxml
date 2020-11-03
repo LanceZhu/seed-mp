@@ -1,6 +1,7 @@
 <!--miniprogram/pages/socket/index.wxml-->
 <view class="wrapper">
   <view wx:if="{{ showQuestionOption }}" class="question-selection">
+    <header></header>
     <view class="title">
       可一次选择多个要练习的知识点，点击页面下方的“提交”,系统将推荐练习题目
     </view>
@@ -15,21 +16,24 @@
       <van-button round type="info" bindtap='selectQuesOption' custom-class="submit">提交</van-button>
   </view>
   <view wx:else class="question-wrapper">
-    <view class="desc-wrapper">
-      <import src="/towxml/entry.wxml"/>
-      <template is="entry" data="{{...question.ask}}"/>
-    </view>
-    <view class="answer-wrapper">
-      <view
-       wx:for="{{ question.answer}}"
-       wx:key="index"
-       data-index="{{ index }}"
-       bindtap="answer"
-       class="answer {{ (isChoosed && choiceIndex === index) ? (item.right ? 'right' : 'error') : '' }}"
-      >
-        {{ item.answer }} 
+    <block wx:if="{{ hasQuestion }}">
+      <view class="desc-wrapper">
+        <import src="/towxml/entry.wxml"/>
+        <template is="entry" data="{{...question.ask}}"/>
       </view>
-    </view>
+      <view class="answer-wrapper">
+        <view
+        wx:for="{{ question.answer}}"
+        wx:key="index"
+        data-index="{{ index }}"
+        bindtap="answer"
+        class="answer {{ (isChoosed && choiceIndex === index) ? (item.right ? 'right' : 'error') : '' }}"
+        >
+          {{ item.answer }} 
+        </view>
+      </view>
+    </block>
+    <view wx:else class="no-question">已无题目！</view>
   </view>
 </view>
 

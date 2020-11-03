@@ -1,5 +1,7 @@
 const app = getApp()
 
+const { config } = app
+const { USERINFO_KEY } = config.localStorage
 const { isLogged } = app.services
 
 Page({
@@ -28,10 +30,6 @@ Page({
   },
 
   onLoad: function (options) {
-    const userInfo = wx.getStorageSync('userInfo')
-    this.setData({
-      userInfo
-    })
   },
 
   onShow: function () {
@@ -40,7 +38,7 @@ Page({
         url: '/pages/authorize/authorize'
       })
     } else {
-      const userInfo = wx.getStorageSync('userInfo')
+      const userInfo = wx.getStorageSync(USERINFO_KEY)
       this.setData({
         userInfo
       })

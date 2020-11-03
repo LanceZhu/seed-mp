@@ -1,4 +1,4 @@
-.header{
-    width: 750rpx;
-    height: 100rpx;
-  }
+.seed-header {
+  width: 750rpx;
+  height: 100rpx;
+}

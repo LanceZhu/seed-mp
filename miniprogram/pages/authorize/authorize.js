@@ -1,6 +1,9 @@
 const util = require('../../utils/util.js')
 const app = getApp()
 
+const { config } = app
+const { USERINFO_KEY } = config.localStorage
+
 const { bindUserInfo } = app.services
 
 Page({
@@ -16,7 +19,7 @@ Page({
     try {
       await bindUserInfo(userInfo)
       util.showSuccess('登录成功！')
-      wx.setStorageSync('userInfo', userInfo)
+      wx.setStorageSync(USERINFO_KEY, userInfo)
       wx.navigateBack()
     } catch (err) {
       util.showSuccess('登录失败！')

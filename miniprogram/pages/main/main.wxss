@@ -9,44 +9,43 @@
   url('//at.alicdn.com/t/webfont_1hnj332vka2.svg#思源黑体-粗') format('svg'); /* iOS 4.1- */
 }
 
-.device{
-  background: #fff;
+page {
+  height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+.content {
+  font-family: "webfont" !important;
+  flex: 1;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.content{
-  font-family: "webfont" !important;
-  background: #fff;
-  height: 100%;
-  width:100%;
+.box-wrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
   flex-wrap:wrap;
-  margin-top: 155.330086;
+  justify-content: space-around;
 }
 
-.box{
-  width:300rpx;
+.box {
+  width: 300rpx;
   height: 400rpx;
-  margin-top: 50rpx;
-  margin-left: 50rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background: blue;
-  background: transparent;
 }
 
-.box_image{
+.image {
+  box-sizing: border-box;
   width: 252rpx;
   height: 252rpx;
+  border-radius: 50%;
+  padding: 50rpx;
 }
 
-.box_title{
-    display: block;
+.title {
+  display: block;
 }
