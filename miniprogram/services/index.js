@@ -1,7 +1,7 @@
 const config = require('../config')
 
-const { BASE_URL } = config
-const SESSION_KEY = 'openid'
+const { BASE_URL, localStorage } = config
+const { SESSION_KEY } = localStorage
 
 // 登录
 // 登录凭证为 Storage 中 openid

@@ -6,8 +6,6 @@ const { getLearning } = app.services
 Page({
   data: {
     article: {},
-    chapter: '',
-    name: '',
     chapterId: '',
     nameId: '',
     isLoading: true
@@ -15,7 +13,7 @@ Page({
 
   continue: function () {
     wx.navigateTo({
-      url: '../../../questions/index' + '?chapterId=' + this.data.chapterId + '&nameId=' + this.data.nameId + '&title=小结' + '&question_counts=3' + '&fromBasicDetail=true'
+      url: '../../../questions/index' + '?chapterId=' + this.data.chapterId + '&nameId=' + this.data.nameId + '&counts=3' + '&fromBasicDetail=true'
     })
   },
 

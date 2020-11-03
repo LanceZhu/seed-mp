@@ -15,7 +15,8 @@
         "pages/questions/analysis/index"
     ],
     "usingComponents": {
-        "van-toast": "@vant/weapp/toast/index"
+        "van-toast": "@vant/weapp/toast/index",
+        "header": "/components/header/header"
     },
     "subpackages": [{
         "root": "pages/mine/",

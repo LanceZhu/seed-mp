@@ -1,6 +1,8 @@
 /* miniprogram/pages/socket/analysis/index.wxss */
 @import '/towxml/style/main_min.wxss';
 @import '/towxml/style/theme/min.wxss';
+/**主题配色**/
+@import '/towxml/style/theme/light.wxss';
 
 .question {
   background: #6A84E3;
