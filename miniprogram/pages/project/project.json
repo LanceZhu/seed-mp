@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "示例项目",
   "usingComponents":{
+    "programs-portal": "/components/programs-portal/programs-portal"
   }
 }

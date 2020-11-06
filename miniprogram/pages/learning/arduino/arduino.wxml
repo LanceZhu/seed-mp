@@ -1,7 +1,6 @@
 <view class='device'>
   <header></header>
   <view style='margin-top: 100rpx'>
-  <scroll-view scroll-y style="height:{{winHeight - 120}}px">
     <view class='content'>
 
         <view class="kind-list">
@@ -36,6 +35,5 @@
       </view>
 
     </view>
-  </scroll-view>
   </view>
 </view>

@@ -11,10 +11,7 @@ Page({
       { name: '网络基础实验', children: ['WiFi连接实验', 'TCP建立连接实验', 'HTTP请求实验', 'Wireshark抓包实验', '计算机网络技能实验', '路由器配置实验', '交换机端口配置实验', 'VTP配置实验', '拓展实验——微信公众平台开发实践（基于腾讯云服务器）'], id: 8, open: false },
       { name: '微信小程序', children: ['微信小程序简介', '小程序注册教程', '小程序开发基础教程', '腾讯云服务器购买指南', '域名购买与备案'], id: 9, open: false },
       { name: '云API实验', children: ['Fiddler调用', 'oneNET的接受数据API调用', '微信小程序前端调用', 'Web前端（JQuery）调用', '服务器端（NodeJS）调用', '服务器端（NodeJS）数据库（mongoDB）的基本使用', '服务器端（PHP）调用'], id: 10, open: false }
-    ],
-    winHeight: 0,
-    winWidth: 0,
-    ratio: 0
+    ]
   },
 
   // 打开子菜单
@@ -34,31 +31,6 @@ Page({
   },
 
   onLoad: function (options) {
-    var that = this
-    var winHeight = wx.getStorageSync('winHeight')
-    if (winHeight) {
-      that.setData({
-        winHeight: winHeight,
-        winWidth: wx.getStorageSync('winWidth'),
-        ratio: wx.getStorageSync('ratio')
-      })
-    } else {
-      wx.getSystemInfo({
-        success: function (res) {
-          console.log('[basic][winHeight]' + res.windowHeight)
-          console.log('[basic][winWidth]' + res.windowWidth)
-          console.log('[basic][ratio]' + 750 / res.windowWidth)
-          that.setData({
-            winWidth: res.windowWidth,
-            winHeight: res.windowHeight,
-            ratio: 750 / res.windowWidth
-          })
-          wx.setStorageSync('winHeight', res.windowHeight)
-          wx.setStorageSync('winWidth', res.windowWidth)
-          wx.setStorageSync('ratio', 750 / res.windowWidth)
-        }
-      })
-    }
   },
   onShareAppMessage: function () {
     return {

@@ -38,18 +38,11 @@ var showModel = (title, content) => {
   })
 }
 
-var setDeviceSize = (page) => {
-  page.setData({
-    winWidth: wx.getStorageSync('winWidth'),
-    winHeight: wx.getStorageSync('winHeight'),
-    ratio: wx.getStorageSync('ratio')
-  })
-}
-
 // 睡眠 time ms
 const sleep = async (time) => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
+      clearTimeout(timer)
       resolve()
     }, time)
   })
@@ -60,6 +53,5 @@ module.exports = {
   showBusy,
   showSuccess,
   showModel,
-  setDeviceSize,
   sleep
 }

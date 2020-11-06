@@ -27,8 +27,6 @@ Page({
   },
 
   onLoad: function (options) {
-    var that = this
-    util.setDeviceSize(that)
   },
 
   onShareAppMessage: function () {

@@ -52,6 +52,7 @@ page {
   width: 650rpx;
   flex: 1;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   display: flex;
   align-items: center;
 }

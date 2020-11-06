@@ -1,3 +1,8 @@
+
+.header {
+  position: fixed;
+}
+
 .seed-header {
   width: 750rpx;
   height: 100rpx;

@@ -65,9 +65,9 @@ Page({
         question.answer = JSON.parse(question.answer)
         this.setData({
           question: data.data.question[0],
-          isChoosed: false,
-          startTime: (new Date()).getTime()
+          isChoosed: false
         })
+        this.data.startTime = (new Date()).getTime()
       }
     })
     wx.onSocketClose(res => {

@@ -3,9 +3,6 @@ var app = getApp()
 
 Page({
   data: {
-    winHeight: 0,
-    winWidth: 0,
-    ratio: 0,
     question: {},
     ask: {},
     right_answer: '',

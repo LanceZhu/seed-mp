@@ -28,10 +28,7 @@ Page({
       img: '/images/mine.svg',
       location: '../mine/mine',
       backgroundColor: 'rgb(94, 189, 183)'
-    }],
-    winWidth: 0,
-    winHeight: 0,
-    ratio: 0
+    }]
   },
 
   toDetail: function (e) {
@@ -41,22 +38,6 @@ Page({
   },
 
   onLoad: function (options) {
-    var that = this
-    wx.getSystemInfo({
-      success: function (res) {
-        console.log('[main][winHeight]' + res.windowHeight)
-        console.log('[main][winWidth]' + res.windowWidth)
-        console.log('[main][ratio]' + 750 / res.windowWidth)
-        that.setData({
-          winWidth: res.windowWidth,
-          winHeight: res.windowHeight,
-          ratio: 750 / res.windowWidth
-        })
-        wx.setStorageSync('winHeight', res.windowHeight)
-        wx.setStorageSync('winWidth', res.windowWidth)
-        wx.setStorageSync('ratio', 750 / res.windowWidth)
-      }
-    })
   },
   onReady: function () {},
   onShow: function () {
