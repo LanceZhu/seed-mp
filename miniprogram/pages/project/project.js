@@ -26,7 +26,7 @@ Page({
       // 不存在缓存 缓存存在但缓存时间超过1天
       if (
         storedProgramsObj === '' ||
-        (storedProgramsObj !== '' && (storedProgramsObj.timestamp - (new Date().getTime > 24 * 60 * 60 * 1000)))
+        (storedProgramsObj !== '' && ((new Date().getTime - storedProgramsObj.timestamp > 24 * 60 * 60 * 1000)))
       ) {
         let programs = await getPrograms()
         programs = programs.map(program => {
