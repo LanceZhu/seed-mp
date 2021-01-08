@@ -18,15 +18,18 @@
         "van-toast": "@vant/weapp/toast/index",
         "header": "/components/header/header"
     },
-    "subpackages": [{
-        "root": "pages/mine/",
-        "pages": [
-            "mine",
-            "feedback/feedback",
-            "mistake/mistake",
-            "student_daolun_2020/index"
-        ]
-    }],
+    "subpackages": [
+        {
+            "root": "pages/mine/",
+            "pages": [
+                "mine",
+                "feedback/feedback",
+                "mistake/mistake",
+                "student_daolun_2020/index",
+                "about/about"
+            ]
+        }
+    ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#6A84E3",

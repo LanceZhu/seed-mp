@@ -1,0 +1,6 @@
+<!--miniprogram/pages/mine/about/about.wxml-->
+<view style="padding: 40rpx;">
+    <view style="font-weight: bold; margin: 80rpx; text-align: center">Arduino快速入门</view>
+    <text space="nbsp" user-select="true">  本程序前端已开源，欢迎Star&PR！
+  GitHub: https://github.com/LanceZhu/seed-mp</text>
+</view>

@@ -45,3 +45,18 @@
   height: 160rpx;
   font-size:50rpx;
 }
+
+button::after {
+  border: none;
+}
+
+button {
+  background-color: #fff;
+  display: inline-block;
+  font-size: inherit;
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
+  width: 100%;
+  text-align: left;
+}

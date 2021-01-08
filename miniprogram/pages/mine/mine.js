@@ -19,6 +19,10 @@ Page({
         desc: '反馈',
         icon: 'smile-comment-o',
         url: './feedback/feedback'
+      },       {
+        desc: '关于',
+        icon: 'point-gift-o',
+        url: './about/about'
       }
     ]
   },

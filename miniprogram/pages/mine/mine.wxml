@@ -16,6 +16,11 @@
     </van-cell-group>
     <van-cell-group title="其他">
       <van-cell is-link wx:for="{{utils}}" wx:key="index" title="{{item.desc}}" icon="{{item.icon}}" link-type="navigateTo" url="{{item.url}}" />
+      <van-cell icon="contact">
+        <view slot="title">
+          <button open-type="contact">联系客服</button>
+        </view>
+      </van-cell>
     </van-cell-group>
   </view>
 </view>
